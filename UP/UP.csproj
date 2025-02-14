@@ -94,5 +94,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="Elements\" />
+    <Folder Include="Images\" />
+    <Folder Include="Pages\Login\" />
+    <Folder Include="Pages\PagesInTable\" />
+    <Folder Include="Resource\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
