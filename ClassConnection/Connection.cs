@@ -44,8 +44,7 @@ namespace ClassConnection
         public static List<Statuses_SVO> StatusesSvos = new List<Statuses_SVO>();
         public static List<Statuses_Sirots> StatusesSirots = new List<Statuses_Sirots>();
 
-        //Connect to database, same like in source
-        public static void Connect(string server, string database, string userId, string password)
+        public static void Connect()
         {
             try
             {
