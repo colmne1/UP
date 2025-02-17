@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClassModules
 {
-    public class Class1
+    public class Departments
     {
+        public int DepartmentID { get; set; }
+        public string DepartmentName { get; set; }
     }
 }
