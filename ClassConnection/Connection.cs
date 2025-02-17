@@ -6,51 +6,72 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using ClassModules;
 
 namespace ClassConnection
 {
     public class Connection
     {
-        public static bool ConnectIsTrue = false;
-        public static string Path_connection;
+        public static bool IsConnected = false;
+        public static string ConnectionString;
 
-        public static List<Voditel> voditel = new List<Voditel>();
-        public static List<Ceh> ceh = new List<Ceh>();
-        public static List<Garage> garage = new List<Garage>();
-        public static List<Technique> technique = new List<Technique>();
-        public static List<Zapchast> zapchast = new List<Zapchast>();
-        public static List<Users> users = new List<Users>();
+        // Define all your tables as enums
         public enum Tables
         {
-            voditel, сeh, Garage, technique, zapchast, users
+            Rooms,
+            SocialScholarships,
+            Statuses_RiskGroup,
+            Statuses_Invalid,
+            SPPP_Meetings,
+            Students,
+            Departments,
+            Obshaga,
+            Statuses_OVZ,
+            Statuses_SVO,
+            Statuses_Sirots
         }
 
-        public static void Connect()
+        // Lists to hold data from tables (populate as needed)
+        public static List<Rooms> Rooms = new List<Rooms>();
+        public static List<SocialScholarships> SocialScholarships = new List<SocialScholarships>();
+        public static List<Statuses_RiskGroup> StatusesRiskGroups = new List<Statuses_RiskGroup>();
+        public static List<Statuses_Invalid> StatusesInvalids = new List<Statuses_Invalid>();
+        public static List<SPPP_Meetings> SpppMeetings = new List<SPPP_Meetings>();
+        public static List<Students> Students = new List<Students>();
+        public static List<Departments> Departments = new List<Departments>();
+        public static List<Obshaga> Obshagas = new List<Obshaga>();
+        public static List<Statuses_OVZ> StatusesOvzs = new List<Statuses_OVZ>();
+        public static List<Statuses_SVO> StatusesSvos = new List<Statuses_SVO>();
+        public static List<Statuses_Sirots> StatusesSirots = new List<Statuses_Sirots>();
+
+        //Connect to database, same like in source
+        public static void Connect(string server, string database, string userId, string password)
         {
             try
             {
                 string Path = $@"Server=student.permaviat.ru;Database=base1_ISP_21_4_2;Trusted_Connection=True;User Id=ISP_21_4_2;Password=Rd4jS7u7I#";
                 SqlConnection connection = new SqlConnection(Path);
                 connection.Open();
-                ConnectIsTrue = true;
-                Path_connection = Path;
+                IsConnected = true;
+                ConnectionString = Path;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                ConnectIsTrue = false;
+                IsConnected = false;
             }
         }
 
-        public SqlDataReader Query(string query)
+        public SqlDataReader ExecuteQuery(string query)
         {
             try
             {
-                SqlConnection connect = new SqlConnection(Path_connection);
-                connect.Open();
-                SqlCommand command = new SqlCommand(query, connect);
+                SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 return reader;
+
             }
             catch (Exception ex)
             {
@@ -59,174 +80,242 @@ namespace ClassConnection
             }
         }
 
-        public int SetLastId(Tables tables)
+        //Generic Load Data method
+        public void LoadData(Tables table)
         {
             try
             {
-                LoadData(tables);
-                switch (tables.ToString())
+                switch (table)
                 {
-                    case "voditel":
-                        if (voditel.Count >= 1)
+                    case Tables.Rooms:
+                        SqlDataReader reader = ExecuteQuery("SELECT * FROM Rooms ORDER BY RoomID");
+                        Rooms.Clear();
+                        while (reader.Read())
                         {
-                            int max_status = voditel[0].Id_voditel;
-                            max_status = voditel.Max(x => x.Id_voditel);
-                            return max_status + 1;
+                            Rooms room = new Rooms
+                            {
+                                RoomID = Convert.ToInt32(reader.GetValue(0)),
+                                RoomName = Convert.ToString(reader.GetValue(1)),
+                                Vmestim = Convert.ToString(reader.GetValue(2))
+                            };
+                            Rooms.Add(room);
                         }
-                        else return 1;
-                    case "сeh":
-                        if (ceh.Count >= 1)
-                        {
-                            int max_status = ceh[0].Id_сeh;
-                            max_status = ceh.Max(x => x.Id_сeh);
-                            return max_status + 1;
-                        }
-                        else return 1;
-                    case "Garage":
-                        if (garage.Count >= 1)
-                        {
-                            int max_status = garage[0].Id_garage;
-                            max_status = garage.Max(x => x.Id_garage);
-                            return max_status + 1;
-                        }
-                        else return 1;
-                    case "technique":
-                        if (technique.Count >= 1)
-                        {
-                            int max_status = technique[0].Id_technique;
-                            max_status = technique.Max(x => x.Id_technique);
-                            return max_status + 1;
-                        }
-                        else return 1;
-                    case "zapchast":
-                        if (zapchast.Count >= 1)
-                        {
-                            int max_status = zapchast[0].Id_zapchast;
-                            max_status = zapchast.Max(x => x.Id_zapchast);
-                            return max_status + 1;
-                        }
-                        else return 1;
+                        reader.Close();
+                        break;
 
-                }
-                return -1;
-            }
-            catch
-            {
-                return -1;
-            }
-        }
+                    case Tables.SocialScholarships:
+                        reader = ExecuteQuery("SELECT * FROM SocialScholarships ORDER BY ScholarshipID");
+                        SocialScholarships.Clear();
+                        while (reader.Read())
+                        {
+                            SocialScholarships scholarship = new SocialScholarships
+                            {
+                                ScholarshipID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                DocumentReason = Convert.ToString(reader.GetValue(2)),
+                                StartDate = Convert.ToDateTime(reader.GetValue(3)),
+                                EndDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            SocialScholarships.Add(scholarship);
+                        }
+                        reader.Close();
+                        break;
 
-        public void LoadData(Tables tables)
-        {
-            try
-            {
-                if (tables.ToString() == "voditel")
-                {
-                    SqlDataReader itemsVoditel = Query("Select * From " + tables.ToString() + " Order By [Id_voditel]");
-                    voditel.Clear();
-                    while (itemsVoditel.Read())
-                    {
-                        Voditel newVoditel = new Voditel
+                    case Tables.Statuses_RiskGroup:
+                        reader = ExecuteQuery("SELECT * FROM Statuses_RiskGroup ORDER BY RiskGroupID");
+                        StatusesRiskGroups.Clear();
+                        while (reader.Read())
                         {
-                            Id_voditel = Convert.ToInt32(itemsVoditel.GetValue(0)),
-                            Name_voditel = Convert.ToString(itemsVoditel.GetValue(1)),
-                            Prava = Convert.ToString(itemsVoditel.GetValue(2)),
-                            Date_foundation = Convert.ToDateTime(itemsVoditel.GetValue(3)),
-                            Date_update_information = Convert.ToDateTime(itemsVoditel.GetValue(4))
-                        };
-                        voditel.Add(newVoditel);
-                    }
-                    itemsVoditel.Close();
-                }
+                            Statuses_RiskGroup riskGroup = new Statuses_RiskGroup
+                            {
+                                RiskGroupID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                RiskGroupType = Convert.ToString(reader.GetValue(2)),
+                                DateStart = Convert.ToDateTime(reader.GetValue(3)),
+                                DateEnd = Convert.ToDateTime(reader.GetValue(4)),
+                                OsnPost = Convert.ToString(reader.GetValue(5)),
+                                OsnSnat = Convert.ToString(reader.GetValue(6)),
+                                PrichinaPost = Convert.ToString(reader.GetValue(7)),
+                                PrichinaSnat = Convert.ToString(reader.GetValue(8)),
+                                Note = Convert.ToString(reader.GetValue(9)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            StatusesRiskGroups.Add(riskGroup);
+                        }
+                        reader.Close();
+                        break;
 
-                if (tables.ToString() == "сeh")
-                {
-                    SqlDataReader itemsCeh = Query("Select * From " + tables.ToString() + " Order By [Id_сeh]");
-                    ceh.Clear();
-                    while (itemsCeh.Read())
-                    {
-                        Ceh newCeh = new Ceh
+                    case Tables.Statuses_Invalid:
+                        reader = ExecuteQuery("SELECT * FROM Statuses_Invalid ORDER BY DisabilityStatusID");
+                        StatusesInvalids.Clear();
+                        while (reader.Read())
                         {
-                            Id_сeh = Convert.ToInt32(itemsCeh.GetValue(0)),
-                            oborud = Convert.ToString(itemsCeh.GetValue(1)),
-                            Address = Convert.ToString(itemsCeh.GetValue(2)),
-                            remuslug = Convert.ToString(itemsCeh.GetValue(3))
-                        };
-                        ceh.Add(newCeh);
-                    }
-                    itemsCeh.Close();
-                }
-                if (tables.ToString() == "Garage")
-                {
-                    SqlDataReader itemsGarage = Query("Select * From " + tables.ToString() + " Order By [Id_garage]");
-                    garage.Clear();
-                    while (itemsGarage.Read())
-                    {
-                        Garage newGarage = new Garage
-                        {
-                            Id_garage = Convert.ToInt32(itemsGarage.GetValue(0)),
-                            Locations = Convert.ToString(itemsGarage.GetValue(1)),
-                            Vmestim = Convert.ToInt32(itemsGarage.GetValue(2)),
-                            VidTS = Convert.ToInt32((int)itemsGarage.GetValue(3)),
-                            Remrabot = Convert.ToString(itemsGarage.GetValue(4)),
-                            Date_of_foundation = Convert.ToDateTime(itemsGarage.GetValue(5))
-                        };
-                        garage.Add(newGarage);
-                    }
-                    itemsGarage.Close();
-                }
-                if (tables.ToString() == "technique")
-                {
-                    SqlDataReader itemsTechnique = Query("Select * From " + tables.ToString() + " Order By [Id_technique]");
-                    technique.Clear();
-                    while (itemsTechnique.Read())
-                    {
-                        Technique newTechnique = new Technique
-                        {
-                            Id_technique = Convert.ToInt32(itemsTechnique.GetValue(0)),
-                            Name_technique = Convert.ToString(itemsTechnique.GetValue(1)),
-                            God_vipuska = Convert.ToInt32(itemsTechnique.GetValue(2)),
-                            Characteristics = Convert.ToString(itemsTechnique.GetValue(3)),
-                            voditel = Convert.ToInt32(itemsTechnique.GetValue(4))
-                        };
-                        technique.Add(newTechnique);
-                    }
-                    itemsTechnique.Close();
-                }
-                if (tables.ToString() == "zapchast")
-                {
-                    SqlDataReader itemsZapchast = Query("Select * From " + tables.ToString() + " Order By [Id_zapchast]");
-                    zapchast.Clear();
-                    while (itemsZapchast.Read())
-                    {
-                        Zapchast newZapchast = new Zapchast
-                        {
-                            Id_zapchast = Convert.ToInt32(itemsZapchast.GetValue(0)),
-                            Name_zapchast = Convert.ToString(itemsZapchast.GetValue(1)),
-                            Description = Convert.ToString(itemsZapchast.GetValue(2)),
-                            Date_foundation = Convert.ToDateTime(itemsZapchast.GetValue(3))
-                        };
-                        zapchast.Add(newZapchast);
-                    }
-                    itemsZapchast.Close();
-                }
+                            Statuses_Invalid invalid = new Statuses_Invalid
+                            {
+                                DisabilityStatusID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                OrderNumber = Convert.ToString(reader.GetValue(2)),
+                                StartDate = Convert.ToDateTime(reader.GetValue(3)),
+                                EndDate = Convert.ToDateTime(reader.GetValue(4)),
+                                DisabilityType = Convert.ToString(reader.GetValue(5)),
+                                Note = Convert.ToString(reader.GetValue(6)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            StatusesInvalids.Add(invalid);
+                        }
+                        reader.Close();
+                        break;
 
-                if (tables.ToString() == "users")
-                {
-                    SqlDataReader itemsUsers = Query("Select * From " + tables.ToString() + " Order By [Id]");
-                    users.Clear();
-                    while (itemsUsers.Read())
-                    {
-                        Users newUsers = new Users
+                    case Tables.SPPP_Meetings:
+                        reader = ExecuteQuery("SELECT * FROM SPPP_Meetings ORDER BY MeetingID");
+                        SpppMeetings.Clear();
+                        while (reader.Read())
                         {
-                            Id = Convert.ToInt32(itemsUsers.GetValue(0)),
-                            Login = Convert.ToString(itemsUsers.GetValue(1)),
-                            Password = Convert.ToString(itemsUsers.GetValue(2)),
-                            Role = Convert.ToString(itemsUsers.GetValue(3))
-                        };
-                        users.Add(newUsers);
-                    }
-                    itemsUsers.Close();
+                            SPPP_Meetings meeting = new SPPP_Meetings
+                            {
+                                MeetingID = Convert.ToInt32(reader.GetValue(1)),
+                                StudentID = Convert.ToInt32(reader.GetValue(2)),
+                                Date = Convert.ToDateTime(reader.GetValue(3)),
+                                OsnVizov = Convert.ToString(reader.GetValue(4)),
+                                Sotrudniki = Convert.ToString(reader.GetValue(5)),
+                                Predstaviteli = Convert.ToString(reader.GetValue(6)),
+                                ReasonForCall = Convert.ToString(reader.GetValue(7)),
+                                Reshenie = Convert.ToString(reader.GetValue(8)),
+                                Note = Convert.ToString(reader.GetValue(9)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            SpppMeetings.Add(meeting);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Students:
+                        reader = ExecuteQuery("SELECT * FROM Students ORDER BY StudentID");
+                        Students.Clear();
+                        while (reader.Read())
+                        {
+                            Students student = new Students
+                            {
+                                StudentID = Convert.ToInt32(reader.GetValue(0)),
+                                LastName = Convert.ToString(reader.GetValue(1)),
+                                FirstName = Convert.ToString(reader.GetValue(2)),
+                                MiddleName = Convert.ToString(reader.GetValue(3)),
+                                BirthDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Gender = Convert.ToString(reader.GetValue(5)),
+                                ContactNumber = Convert.ToString(reader.GetValue(6)),
+                                Obrazovanie = Convert.ToString(reader.GetValue(7)),
+                                Otdelenie = Convert.ToString(reader.GetValue(8)),
+                                Groups = Convert.ToString(reader.GetValue(9)),
+                                Finance = Convert.ToString(reader.GetValue(10)),
+                                YearPostup = Convert.ToInt32(reader.GetValue(11)),
+                                YearOkonch = Convert.ToInt32(reader.GetValue(12)),
+                                InfoOtchiz = Convert.ToString(reader.GetValue(13)),
+                                DateOtchiz = Convert.ToDateTime(reader.GetValue(14)),
+                                Note = Convert.ToString(reader.GetValue(15)),
+                                ParentsInfo = Convert.ToString(reader.GetValue(16)),
+                                Vziskanie = Convert.ToString(reader.GetValue(17)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"],  // Handle null values
+                                DepartamentsID = Convert.ToInt32(reader.GetValue(7))
+                            };
+                            Students.Add(student);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Departments:
+                        reader = ExecuteQuery("SELECT * FROM Departments ORDER BY DepartmentID");
+                        Departments.Clear();
+                        while (reader.Read())
+                        {
+                            Departments department = new Departments
+                            {
+                                DepartmentID = Convert.ToInt32(reader.GetValue(0)),
+                                DepartmentName = Convert.ToString(reader.GetValue(1))
+                            };
+                            Departments.Add(department);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Obshaga:
+                        reader = ExecuteQuery("SELECT * FROM Obshaga ORDER BY DormitoryID");
+                        Obshagas.Clear();
+                        while (reader.Read())
+                        {
+                            Obshaga obshaga = new Obshaga
+                            {
+                                DormitoryID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                RoomNumber = Convert.ToInt32(reader.GetValue(2)),
+                                CheckInDate = Convert.ToDateTime(reader.GetValue(3)),
+                                CheckOutDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Note = Convert.ToString(reader.GetValue(5)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            Obshagas.Add(obshaga);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Statuses_OVZ:
+                        reader = ExecuteQuery("SELECT * FROM Statuses_OVZ ORDER BY OVZStatusID");
+                        StatusesOvzs.Clear();
+                        while (reader.Read())
+                        {
+                            Statuses_OVZ ovz = new Statuses_OVZ
+                            {
+                                OVZStatusID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                Prikaz = Convert.ToString(reader.GetValue(2)),
+                                StartDate = Convert.ToDateTime(reader.GetValue(3)),
+                                EndDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Note = Convert.ToString(reader.GetValue(5)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            StatusesOvzs.Add(ovz);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Statuses_SVO:
+                        reader = ExecuteQuery("SELECT * FROM Statuses_SVO ORDER BY SVOStatusID");
+                        StatusesSvos.Clear();
+                        while (reader.Read())
+                        {
+                            Statuses_SVO svo = new Statuses_SVO
+                            {
+                                SVOStatusID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                DocumentOsnov = Convert.ToString(reader.GetValue(2)),
+                                StartDate = Convert.ToDateTime(reader.GetValue(3)),
+                                EndDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            StatusesSvos.Add(svo);
+                        }
+                        reader.Close();
+                        break;
+
+                    case Tables.Statuses_Sirots:
+                        reader = ExecuteQuery("SELECT * FROM Statuses_Sirots ORDER BY OrphanStatusID");
+                        StatusesSirots.Clear();
+                        while (reader.Read())
+                        {
+                            Statuses_Sirots sirot = new Statuses_Sirots
+                            {
+                                OrphanStatusID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                OrderNumber = Convert.ToString(reader.GetValue(2)),
+                                StartDate = Convert.ToDateTime(reader.GetValue(3)),
+                                EndDate = Convert.ToDateTime(reader.GetValue(4)),
+                                Note = Convert.ToString(reader.GetValue(5)),
+                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                            };
+                            StatusesSirots.Add(sirot);
+                        }
+                        reader.Close();
+                        break;
                 }
 
             }
@@ -235,6 +324,101 @@ namespace ClassConnection
                 Console.WriteLine(ex.Message);
             }
         }
- 
+
+        //Generic function for getting new id
+        public int SetLastId(Tables table)
+        {
+            try
+            {
+                LoadData(table); // Ensure data is loaded
+
+                switch (table)
+                {
+                    case Tables.Rooms:
+                        if (Rooms.Count > 0)
+                        {
+                            return Rooms.Max(r => r.RoomID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.SocialScholarships:
+                        if (SocialScholarships.Count > 0)
+                        {
+                            return SocialScholarships.Max(s => s.ScholarshipID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Statuses_RiskGroup:
+                        if (StatusesRiskGroups.Count > 0)
+                        {
+                            return StatusesRiskGroups.Max(s => s.RiskGroupID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Statuses_Invalid:
+                        if (StatusesInvalids.Count > 0)
+                        {
+                            return StatusesInvalids.Max(s => s.DisabilityStatusID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.SPPP_Meetings:
+                        if (SpppMeetings.Count > 0)
+                        {
+                            return SpppMeetings.Max(s => s.MeetingID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Students:
+                        if (Students.Count > 0)
+                        {
+                            return Students.Max(s => s.StudentID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Departments:
+                        if (Departments.Count > 0)
+                        {
+                            return Departments.Max(d => d.DepartmentID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Obshaga:
+                        if (Obshagas.Count > 0)
+                        {
+                            return Obshagas.Max(o => o.DormitoryID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Statuses_OVZ:
+                        if (StatusesOvzs.Count > 0)
+                        {
+                            return StatusesOvzs.Max(s => s.OVZStatusID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Statuses_SVO:
+                        if (StatusesSvos.Count > 0)
+                        {
+                            return StatusesSvos.Max(s => s.SVOStatusID) + 1;
+                        }
+                        return 1;
+
+                    case Tables.Statuses_Sirots:
+                        if (StatusesSirots.Count > 0)
+                        {
+                            return StatusesSirots.Max(s => s.OrphanStatusID) + 1;
+                        }
+                         else return 1;
+                }
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+
+        }
+
     }
 }
