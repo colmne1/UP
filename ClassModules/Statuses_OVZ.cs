@@ -15,5 +15,6 @@ namespace ClassModules
         public DateTime EndDate { get; set; }
         public string Note { get; set; }
         public string Files { get; set; }
+
     }
 }
