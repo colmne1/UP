@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using ClassModules;
 
 namespace ClassConnection
@@ -28,7 +29,8 @@ namespace ClassConnection
             Obshaga,
             Statuses_OVZ,
             Statuses_SVO,
-            Statuses_Sirots
+            Statuses_Sirots,
+            users
         }
 
         // Lists to hold data from tables (populate as needed)
@@ -78,8 +80,6 @@ namespace ClassConnection
                 return null;
             }
         }
-
-        //Generic Load Data method
         public void LoadData(Tables table)
         {
             try
@@ -114,7 +114,7 @@ namespace ClassConnection
                                 DocumentReason = Convert.ToString(reader.GetValue(2)),
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             SocialScholarships.Add(scholarship);
                         }
@@ -138,7 +138,7 @@ namespace ClassConnection
                                 PrichinaPost = Convert.ToString(reader.GetValue(7)),
                                 PrichinaSnat = Convert.ToString(reader.GetValue(8)),
                                 Note = Convert.ToString(reader.GetValue(9)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             StatusesRiskGroups.Add(riskGroup);
                         }
@@ -159,7 +159,7 @@ namespace ClassConnection
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 DisabilityType = Convert.ToString(reader.GetValue(5)),
                                 Note = Convert.ToString(reader.GetValue(6)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             StatusesInvalids.Add(invalid);
                         }
@@ -182,7 +182,7 @@ namespace ClassConnection
                                 ReasonForCall = Convert.ToString(reader.GetValue(7)),
                                 Reshenie = Convert.ToString(reader.GetValue(8)),
                                 Note = Convert.ToString(reader.GetValue(9)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             SpppMeetings.Add(meeting);
                         }
@@ -214,7 +214,7 @@ namespace ClassConnection
                                 Note = Convert.ToString(reader.GetValue(15)),
                                 ParentsInfo = Convert.ToString(reader.GetValue(16)),
                                 Vziskanie = Convert.ToString(reader.GetValue(17)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"],  // Handle null values
+                                Files = Convert.ToString(reader.GetValue(5)),  // Handle null values
                                 DepartamentsID = Convert.ToInt32(reader.GetValue(7))
                             };
                             Students.Add(student);
@@ -250,7 +250,7 @@ namespace ClassConnection
                                 CheckInDate = Convert.ToDateTime(reader.GetValue(3)),
                                 CheckOutDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             Obshagas.Add(obshaga);
                         }
@@ -270,7 +270,7 @@ namespace ClassConnection
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             StatusesOvzs.Add(ovz);
                         }
@@ -289,7 +289,7 @@ namespace ClassConnection
                                 DocumentOsnov = Convert.ToString(reader.GetValue(2)),
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             StatusesSvos.Add(svo);
                         }
@@ -309,7 +309,7 @@ namespace ClassConnection
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = reader["Files"] == DBNull.Value ? null : (byte[])reader["Files"]
+                                Files = Convert.ToString(reader.GetValue(5))
                             };
                             StatusesSirots.Add(sirot);
                         }
@@ -414,6 +414,7 @@ namespace ClassConnection
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return -1;
             }
 

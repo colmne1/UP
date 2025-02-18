@@ -67,8 +67,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Login\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Dictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Login\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,12 +113,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Elements\" />
-    <Folder Include="Images\" />
-    <Folder Include="Pages\Login\" />
     <Folder Include="Pages\PagesInTable\" />
-    <Folder Include="Resource\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\backs.png" />
+    <Resource Include="Images\calendar.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\login.png" />
+    <Resource Include="Images\plus.png" />
+    <Resource Include="Images\redac.png" />
+    <Resource Include="Images\regin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassConnection\ClassConnection.csproj">
+      <Project>{e5c6e620-d6f5-484a-b9e5-f90162c48434}</Project>
+      <Name>ClassConnection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassModules\ClassModules.csproj">
+      <Project>{feff3672-b167-4cb0-acd1-c532e9d9fc90}</Project>
+      <Name>ClassModules</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
