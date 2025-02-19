@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UP.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для SPPP_Meetings.xaml
+    /// Логика взаимодействия для SPPP_Meetings_items.xaml
     /// </summary>
-    public partial class SPPP_Meetings : UserControl
+    public partial class SPPP_Meetings_items : UserControl
     {
-        public SPPP_Meetings()
+        public SPPP_Meetings_items()
         {
             InitializeComponent();
         }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace UP.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для Departments_times.xaml
+    /// Логика взаимодействия для Departments_items.xaml
     /// </summary>
-    public partial class Departments_times : UserControl
+    public partial class Departments_items : UserControl
     {
-        public Departments_times()
+        public Departments_items()
         {
             InitializeComponent();
         }
