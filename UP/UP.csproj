@@ -274,7 +274,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\del.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\back.png" />
     <Resource Include="Images\backs.png" />
@@ -294,6 +296,19 @@
       <Project>{feff3672-b167-4cb0-acd1-c532e9d9fc90}</Project>
       <Name>ClassModules</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\invalid.png" />
+    <Resource Include="Images\obshaga.png" />
+    <Resource Include="Images\OVZ.jpg" />
+    <Resource Include="Images\risk.png" />
+    <Resource Include="Images\rooms.png" />
+    <Resource Include="Images\sirots.png" />
+    <Resource Include="Images\SPPP.png" />
+    <Resource Include="Images\stipend.png" />
+    <Resource Include="Images\students.png" />
+    <Resource Include="Images\SVO.png" />
+    <Resource Include="Images\uchzav.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
