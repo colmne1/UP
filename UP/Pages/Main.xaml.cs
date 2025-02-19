@@ -433,7 +433,7 @@ namespace UP.Pages
                 else if (page_select == page_main.Obshaga)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Obshagas.FindAll(x => x..Contains(Search.Text));
+                    var typeOfTroopByName = Connection.Obshagas.FindAll(x => x.Note.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_OVZ)
