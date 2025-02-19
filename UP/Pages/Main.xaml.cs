@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using UP.Pages.Login;
 
 namespace UP.Pages
 {
@@ -47,22 +48,22 @@ namespace UP.Pages
         {
             if (connectApply == true)
             {
-                Login.connection.LoadData(Connection.Tables.Rooms);
-                Login.connection.LoadData(Connection.Tables.SocialScholarships);
-                Login.connection.LoadData(Connection.Tables.Statuses_RiskGroup);
-                Login.connection.LoadData(Connection.Tables.Statuses_Invalid);
-                Login.connection.LoadData(Connection.Tables.SPPP_Meetings);
-                Login.connection.LoadData(Connection.Tables.Students);
-                Login.connection.LoadData(Connection.Tables.Departments);
-                Login.connection.LoadData(Connection.Tables.Obshaga);
-                Login.connection.LoadData(Connection.Tables.Statuses_OVZ);
-                Login.connection.LoadData(Connection.Tables.Statuses_SVO);
-                Login.connection.LoadData(Connection.Tables.Statuses_Sirots);
+                Login.Login.connection.LoadData(Connection.Tables.Rooms);
+                Login.Login.connection.LoadData(Connection.Tables.SocialScholarships);
+                Login.Login.connection.LoadData(Connection.Tables.Statuses_RiskGroup);
+                Login.Login.connection.LoadData(Connection.Tables.Statuses_Invalid);
+                Login.Login.connection.LoadData(Connection.Tables.SPPP_Meetings);
+                Login.Login.connection.LoadData(Connection.Tables.Students);
+                Login.Login.connection.LoadData(Connection.Tables.Departments);
+                Login.Login.connection.LoadData(Connection.Tables.Obshaga);
+                Login.Login.connection.LoadData(Connection.Tables.Statuses_OVZ);
+                Login.Login.connection.LoadData(Connection.Tables.Statuses_SVO);
+                Login.Login.connection.LoadData(Connection.Tables.Statuses_Sirots);
             }
         }
         public void RoleUser()
         {
-            WhoAmI.Content = $"Здравствуйте, {Login.UserInfo[0]}! Роль - {Login.UserInfo[1]}";
+            WhoAmI.Content = $"Здравствуйте, {Login.Login.UserInfo[0]}! Роль - {Login.Login.UserInfo[1]}";
         }
         public void OpenPageLogin()
         {
@@ -74,7 +75,7 @@ namespace UP.Pages
             };
             opgridAnimation.Completed += delegate
             {
-                MainWindow.init.frame.Navigate(new Login());
+                MainWindow.init.frame.Navigate(new Login.Login());
                 DoubleAnimation opgrisdAnimation = new DoubleAnimation()
                 {
                     From = 0,
@@ -97,7 +98,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Rooms && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Rooms && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Rooms(new ClassModules.Rooms());
                     parrent.Children.Add(new Elements.Add(add));
@@ -124,7 +125,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.SocialScholarships && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.SocialScholarships && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.SocialScholarships(new ClassModules.SocialScholarships());
                     parrent.Children.Add(new Elements.Add(add));
@@ -151,7 +152,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Statuses_RiskGroup && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Statuses_RiskGroup && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Statuses_RiskGroup(new ClassModules.Statuses_RiskGroup());
                     parrent.Children.Add(new Elements.Add(add));
@@ -178,7 +179,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Statuses_Invalid && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Statuses_Invalid && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Statuses_Invalid(new ClassModules.Statuses_Invalid());
                     parrent.Children.Add(new Elements.Add(add));
@@ -205,7 +206,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.SPPP_Meetings && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.SPPP_Meetings && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.SPPP_Meetings(new ClassModules.SPPP_Meetings());
                     parrent.Children.Add(new Elements.Add(add));
@@ -231,7 +232,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Students && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Students && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Students(new ClassModules.Students());
                     parrent.Children.Add(new Elements.Add(add));
@@ -257,7 +258,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Departments && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Departments && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Departments(new ClassModules.Departments());
                     parrent.Children.Add(new Elements.Add(add));
@@ -284,7 +285,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Obshaga && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Obshaga && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Obshaga(new ClassModules.Obshaga());
                     parrent.Children.Add(new Elements.Add(add));
@@ -311,7 +312,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Statuses_OVZ && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Statuses_OVZ && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Statuses_OVZ(new ClassModules.Statuses_OVZ());
                     parrent.Children.Add(new Elements.Add(add));
@@ -338,7 +339,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Statuses_SVO && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Statuses_SVO && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Statuses_SVO(new ClassModules.Statuses_SVO());
                     parrent.Children.Add(new Elements.Add(add));
@@ -365,7 +366,7 @@ namespace UP.Pages
                         await Task.Delay(90);
                     }
                 }
-                if (page_select == page_main.Statuses_Sirots && Login.UserInfo[1] == "admin")
+                if (page_select == page_main.Statuses_Sirots && Login.Login.UserInfo[1] == "admin")
                 {
                     var add = new Pages.PagesInTable.Statuses_Sirots(new ClassModules.Statuses_Sirots());
                     parrent.Children.Add(new Elements.Add(add));
@@ -394,7 +395,7 @@ namespace UP.Pages
                 else if (page_select == page_main.SocialScholarships)
                 {
                     parrent.Children.Clear();
-                    var country = Connection.SocialScholarships.FindAll(x => x.oborud.Contains(Search.Text));
+                    var country = Connection.SocialScholarships.FindAll(x => x.DocumentReason.Contains(Search.Text));
                     var countryIds = country.Select(c => c.ScholarshipID).ToList();
                     var locationsByCountry = Connection.SocialScholarships.Where(l => countryIds.Contains(l.ScholarshipID)).ToList();
                     foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.SocialScholarships_items(itemSearch));
@@ -402,55 +403,55 @@ namespace UP.Pages
                 else if (page_select == page_main.Statuses_RiskGroup)
                 {
                     parrent.Children.Clear();
-                    var VoditelById = Connection.StatusesRiskGroups.FindAll(x => x.Id_voditel.ToString().Contains(Search.Text));
+                    var VoditelById = Connection.StatusesRiskGroups.FindAll(x => x.RiskGroupID.ToString().Contains(Search.Text));
                     foreach (var itemSearch in VoditelById) parrent.Children.Add(new Elements.Voditel_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_Invalid)
                 {
                     parrent.Children.Clear();
-                    var techniqueByName = Connection.StatusesInvalids.FindAll(x => x.Name_technique.Contains(Search.Text));
+                    var techniqueByName = Connection.StatusesInvalids.FindAll(x => x.DisabilityType.Contains(Search.Text));
                     foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Technique_items(itemSearch));
                 }
                 else if (page_select == page_main.SPPP_Meetings)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.SpppMeetings.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.SpppMeetings.FindAll(x => x.OsnVizov.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Students)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Students.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.Students.FindAll(x => x.LastName.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Departments)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Departments.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.Departments.FindAll(x => x.DepartmentName.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Obshaga)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.zapchast.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.Obshagas.FindAll(x => x..Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_OVZ)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesOvzs.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.StatusesOvzs.FindAll(x => x.Prikaz.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_SVO)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesSvos.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.StatusesSvos.FindAll(x => x.DocumentOsnov.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_Sirots)
                 {
                     parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesSirots.FindAll(x => x.Name_zapchast.Contains(Search.Text));
+                    var typeOfTroopByName = Connection.StatusesSirots.FindAll(x => x.OrderNumber.Contains(Search.Text));
                     foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
                 }
 
@@ -465,32 +466,62 @@ namespace UP.Pages
                 }
                 if (!isDataLoaded || Search.Text == "Поиск")
                 {
-                    if (page_select == page_main.Garage)
+                    if (page_select == page_main.Rooms)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadGarages();
+                        LoadRooms();
                     }
-                    else if (page_select == page_main.ceh)
+                    else if (page_select == page_main.SocialScholarships)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadCeh();
+                        LoadSocialScholarships();
                     }
-                    else if (page_select == page_main.Voditel)
+                    else if (page_select == page_main.Statuses_RiskGroup)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadVoditel();
+                        LoadStatuses_RiskGroup();
                     }
-                    else if (page_select == page_main.technique)
+                    else if (page_select == page_main.Statuses_Invalid)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadTechnique();
+                        LoadStatuses_Invalid();
                     }
-                    else if (page_select == page_main.zapchast)
+                    else if (page_select == page_main.SPPP_Meetings)
                     {
                         if (parrent != null) parrent.Children.Clear();
-                        LoadZapchast();
+                        LoadSPPP_Meetings();
                     }
-
+                    else if (page_select == page_main.Students)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadStudents();
+                    }
+                    else if (page_select == page_main.Departments)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadDepartments();
+                    }
+                    else if (page_select == page_main.Obshaga)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadObshaga();
+                    }
+                    else if (page_select == page_main.Statuses_OVZ)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadStatuses_OVZ();
+                    }
+                    else if (page_select == page_main.Statuses_SVO)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadStatuses_SVO();
+                    }
+                    else if (page_select == page_main.Statuses_Sirots)
+                    {
+                        if (parrent != null) parrent.Children.Clear();
+                        LoadStatuses_Sirots();
+                    }
+                   
                     isDataLoaded = true;
                 }
             }
@@ -503,14 +534,19 @@ namespace UP.Pages
         private void Click_Back(object sender, RoutedEventArgs e)
         {
             Search.IsEnabled = false;
-            garage.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            ceh_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Voditel_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            technique_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            zapchast_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            rooms_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            SocialScholarships_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            GroupRisk_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Invalid_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Students_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Zavedenia_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Obshaga_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            OVZ_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            SVO_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Sirots_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             parrent.Children.Clear();
             page_select = page_main.none;
-            Login.UserInfo[0] = ""; Login.UserInfo[1] = "";
+            Login.Login.UserInfo[0] = ""; Login.Login.UserInfo[1] = "";
             OpenPageLogin();
         }
 
@@ -518,32 +554,61 @@ namespace UP.Pages
         {
             if (page_restart != page_main.none)
             {
-                if (page_restart == page_main.Garage)
+                if (page_restart == page_main.Rooms)
                 {
                     page_select = page_main.none;
-                    Click_Garage(new object(), new RoutedEventArgs());
+                    Click_Rooms(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.ceh)
+                else if (page_restart == page_main.SocialScholarships)
                 {
                     page_select = page_main.none;
-                    Click_Ceh(new object(), new RoutedEventArgs());
+                    Click_SocialScholarships(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.Voditel)
+                else if (page_restart == page_main.Statuses_RiskGroup)
                 {
                     page_select = page_main.none;
-                    Click_Voditel(new object(), new RoutedEventArgs());
+                    Click_Statuses_RiskGroup(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.technique)
+                else if (page_restart == page_main.Statuses_Invalid)
                 {
                     page_select = page_main.none;
-                    Click_Technique(new object(), new RoutedEventArgs());
+                    Click_Statuses_Invalid(new object(), new RoutedEventArgs());
                 }
-                else if (page_restart == page_main.zapchast)
+                else if (page_restart == page_main.SPPP_Meetings)
                 {
                     page_select = page_main.none;
-                    Click_Zapchast(new object(), new RoutedEventArgs());
+                    Click_SPPP_Meetings(new object(), new RoutedEventArgs());
                 }
-
+                else if (page_restart == page_main.Students)
+                {
+                    page_select = page_main.none;
+                    Click_Students(new object(), new RoutedEventArgs());
+                }
+                else if (page_restart == page_main.Departments)
+                {
+                    page_select = page_main.none;
+                    Click_Departments(new object(), new RoutedEventArgs());
+                }
+                else if (page_restart == page_main.Obshaga)
+                {
+                    page_select = page_main.none;
+                    Click_Obshaga(new object(), new RoutedEventArgs());
+                }
+                else if (page_restart == page_main.Statuses_OVZ)
+                {
+                    page_select = page_main.none;
+                    Click_Statuses_OVZ(new object(), new RoutedEventArgs());
+                }
+                else if (page_restart == page_main.Statuses_SVO)
+                {
+                    page_select = page_main.none;
+                    Click_Statuses_SVO(new object(), new RoutedEventArgs());
+                }
+                else if (page_restart == page_main.Statuses_Sirots)
+                {
+                    page_select = page_main.none;
+                    Click_Statuses_Sirots(new object(), new RoutedEventArgs());
+                }
             }
             else
             {
@@ -567,6 +632,25 @@ namespace UP.Pages
                 };
                 control1.BeginAnimation(ScrollViewer.OpacityProperty, opgridAnimation);
             }
+        }
+
+        private void Click_Export(object sender, MouseButtonEventArgs e)
+        {
+            Search.IsEnabled = false;
+            rooms_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            SocialScholarships_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            GroupRisk_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Invalid_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Students_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Zavedenia_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Obshaga_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            OVZ_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            SVO_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            Sirots_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
+            parrent.Children.Clear();
+            page_select = page_main.none;
+            var export = new ExportWindow();
+            export.ShowDialog();
         }
     }
 }

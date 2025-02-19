@@ -45,6 +45,7 @@ namespace ClassConnection
         public static List<Statuses_OVZ> StatusesOvzs = new List<Statuses_OVZ>();
         public static List<Statuses_SVO> StatusesSvos = new List<Statuses_SVO>();
         public static List<Statuses_Sirots> StatusesSirots = new List<Statuses_Sirots>();
+        public static List<Users> users = new List<Users>();
 
         public static void Connect()
         {

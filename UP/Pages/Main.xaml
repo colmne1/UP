@@ -8,17 +8,17 @@
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="Main">
 
-    <Grid Background="#74B8C3">
+    <Grid Background="White">
         <Grid.Resources>
             <ResourceDictionary Source="/Resource/Dictionary.xaml"/>
         </Grid.Resources>
         <Grid Margin="0,0,0,0" VerticalAlignment="Top" Height="60" Grid.ColumnSpan="2">
             <Grid.Effect>
-                <DropShadowEffect BlurRadius="31" Direction="260" Color="#FFC1C1C1" ShadowDepth="0"/>
+                <DropShadowEffect BlurRadius="31" Direction="260" Color="#0060AC" ShadowDepth="0"/>
             </Grid.Effect>
             <Border CornerRadius="00,00,00,00" Margin="0,0,0,0">
                 <Border.Background>
-                    <SolidColorBrush Color="#00A6C0" Opacity="1.0"/>
+                    <SolidColorBrush Color="#9EA1A2" Opacity="1.0"/>
                 </Border.Background>
             </Border>
             <Image Source="/Images/street.png" Margin="19,8,0,0" HorizontalAlignment="Left" Width="41" Height="42" VerticalAlignment="Top"/>
@@ -27,70 +27,70 @@
         </Grid>
         <Grid Margin="10,71,10,0" Height="51" VerticalAlignment="Top">
             <StackPanel x:Name="list_move" Orientation="Horizontal">
-                <Border x:Name="rooms_itms" Margin="5,3,10,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Garage" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="rooms_itms" Margin="5,3,10,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Rooms" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/garage.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Комнаты" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Комнаты" Margin="44,0,0,0" Foreground="White" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="SocialScholarships_itms" Margin="5,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Ceh" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="SocialScholarships_itms" Margin="5,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_SocialScholarships" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/workshop.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Стипендии" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Стипендии" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="GroupRisk_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Voditel" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="GroupRisk_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Statuses_RiskGroup" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/driver.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Группа риска" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Группа риска" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="Invalid_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Technique" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Invalid_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Statuses_Invalid" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/car.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Инвалиды" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Инвалиды" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="SPPP_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="SPPP_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_SPPP_Meetings" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="СППП" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="СППП" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="Students_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Students_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Students" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Студенты" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Студенты" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="Zavedenia_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Zavedenia_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Departments" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Учебные заведения" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Учебные заведения" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="Obshaga_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Obshaga_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Obshaga" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Общежития" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Общежития" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="OVZ_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="OVZ_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Statuses_OVZ" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="ОВЗ" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="ОВЗ" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="SVO_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="SVO_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Statuses_SVO" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="СВО" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="СВО" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
-                <Border x:Name="Sirots_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Zapchast" Padding="7,7,7,7" Cursor="Hand">
+                <Border x:Name="Sirots_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Statuses_Sirots" Padding="7,7,7,7" Cursor="Hand">
                     <Grid Height="30">
                         <Image Source="/Images/wrench.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                        <Label Content="Сироты" Margin="44,0,0,0" Foreground="#3DAEFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                        <Label Content="Сироты" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                     </Grid>
                 </Border>
 
@@ -110,7 +110,7 @@
         </Grid>
         <Border Margin="10,133,10,10" CornerRadius="15,15,15,15">
             <Border.Background>
-                <SolidColorBrush Color="#84E3F2" Opacity="1.0"/>
+                <SolidColorBrush Color="#0060AC" Opacity="1.0"/>
             </Border.Background>
             <Grid MinHeight="457">
                 <ScrollViewer x:Name="scroll_main">

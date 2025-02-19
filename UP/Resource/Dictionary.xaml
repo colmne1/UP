@@ -141,7 +141,7 @@
         </Style.Triggers>
     </Style>
     <Style TargetType="{x:Type Border}" x:Key="Grid_Itm_Anim">
-        <Setter Property="Background" Value="#FF2C2C2C"/>
+        <Setter Property="Background" Value="#E41613"/>
         <Style.Triggers>
             <EventTrigger RoutedEvent="MouseEnter">
                 <EventTrigger.Actions>
