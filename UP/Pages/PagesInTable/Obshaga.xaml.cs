@@ -33,7 +33,7 @@ namespace UP.Pages.PagesInTable
                 cb_room.Content = "Вид техники: " + item.RoomName;
                 RentStart.Text = _obshaga.CheckInDate.ToString();
                 RentOut.Text = _obshaga.CheckOutDate.ToString();
-                primech.Text = _obshaga.Remrabot;
+                primech.Text = _obshaga.Note;
                 room.Items.Add(cb_room);
             }
         }
