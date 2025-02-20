@@ -180,13 +180,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PagesInTable\Statuses_Invalidi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PagesInTable\Statuses_OVZ.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Pages\PagesInTable\Statuses_Invalid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PagesInTable\Statuses_RiskGroup.xaml">
       <SubType>Designer</SubType>
@@ -231,11 +231,11 @@
     <Compile Include="Pages\PagesInTable\SPPP_Meetings.xaml.cs">
       <DependentUpon>SPPP_Meetings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PagesInTable\Statuses_Invalidi.xaml.cs">
+      <DependentUpon>Statuses_Invalidi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PagesInTable\Statuses_OVZ.xaml.cs">
       <DependentUpon>Statuses_OVZ.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\PagesInTable\Statuses_Invalid.xaml.cs">
-      <DependentUpon>Statuses_Invalid.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PagesInTable\Statuses_RiskGroup.xaml.cs">
       <DependentUpon>Statuses_RiskGroup.xaml</DependentUpon>
