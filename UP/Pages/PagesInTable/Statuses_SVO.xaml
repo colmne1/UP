@@ -19,6 +19,8 @@
             <ScrollViewer>
                 <Border MinHeight="600">
                     <Grid>
+                        <Label Content="Студент" Margin="39,95,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="student" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="СВО" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Документ основание" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="prikaz" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_PreviewTextInput_2" LostFocus="TextBox_LostFocus_2" GotFocus="TextBox_GotFocus_2"/>
@@ -26,13 +28,13 @@
                         <DatePicker x:Name="nachStat" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700"/>
                         <Label Content="Дата конца статуса" Margin="40,324,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <DatePicker x:Name="konStat" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700"/>
-                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_ceh_Redact" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Statuses_SVO_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_ceh_Redact" HorizontalAlignment="Right">
+                        <Button x:Name="btn_cancel"  Style="{StaticResource BtnRedac}" Background="#FFE48F2B" Margin="0,0,26.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Cancel_Statuses_SVO_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/backs.png" Width="20" Height="20"/>
                         </Button>
-                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_ceh_Redact" HorizontalAlignment="Left">
+                        <Button x:Name="btn_remove" Style="{StaticResource BtnRedac}" Background="#FFE42B2B" Margin="30,0,0,23.6" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Remove_Statuses_SVO_Redact" HorizontalAlignment="Left">
                             <Image Source="/Images/del.png" Width="20" Height="20"/>
                         </Button>
                     </Grid>
