@@ -30,7 +30,7 @@ namespace UP.Pages.PagesInTable
             {
                 ComboBoxItem cb_room = new ComboBoxItem();
                 cb_room.Tag = item.RoomID;
-                cb_room.Content = "Вид техники: " + item.RoomName;
+                cb_room.Content = "Название комнаты: " + item.RoomName;
                 RentStart.Text = _obshaga.CheckInDate.ToString();
                 RentOut.Text = _obshaga.CheckOutDate.ToString();
                 primech.Text = _obshaga.Note;
@@ -41,9 +41,13 @@ namespace UP.Pages.PagesInTable
         private void Click_Obshaga_Redact(object sender, RoutedEventArgs e)
         {
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Departments);
+            ClassModules.Students Id_student_temp;
+            ClassModules.Rooms Id_room_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
+            Id_room_temp = ClassConnection.Connection.Rooms.Find(x => x.RoomID == Convert.ToInt32(((ComboBoxItem)room.SelectedItem).Tag));
             if (obshaga.CheckInDate == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Obshaga ([DormitoryID], [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{Id_room_temp.ToString()}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -54,7 +58,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update Obshaga [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note] = N'{Id_student_temp.StudentID.ToString()}', '{room.Text}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}' Where [DormitoryID] = {obshaga.DormitoryID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -75,7 +79,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Departments);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete Obshaga Where [DormitoryID] = " + obshaga.DormitoryID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

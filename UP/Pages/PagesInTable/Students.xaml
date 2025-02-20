@@ -10,7 +10,7 @@
 
     <Border CornerRadius="10,0,0,10">
         <Border.Background>
-            <SolidColorBrush Color="#00A6C0" Opacity="1.0"/>
+            <SolidColorBrush Color="#0060AC" Opacity="1.0"/>
         </Border.Background>
         <Grid Margin="0,0,0,-115">
             <Grid.Resources>

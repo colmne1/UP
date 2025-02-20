@@ -37,7 +37,7 @@ namespace UP.Pages.PagesInTable
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Rooms);
             if (rooms.RoomName == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Rooms ([RoomID], [RoomName],[Vmestim]) Values ({id.ToString()}, '{nameroom.Text}','{vmestim.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -48,7 +48,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {departments.DepartmentID}";
+                string query = $"Update сeh Rooms [RoomName] = N'{nameroom.Text}', [Vmestim] = N'{vmestim.Text} Where [RoomID] = {rooms.RoomID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -69,7 +69,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Rooms);
-                string query = "Delete Departments Where [DepartmentID] = " + departments.DepartmentID.ToString() + "";
+                string query = "Delete Rooms Where [RoomID] = " + rooms.RoomID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
