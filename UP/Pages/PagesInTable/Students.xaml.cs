@@ -26,42 +26,56 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             students = _students;
-            foreach (var item in Connection.Students)
+            foreach (var item in Connection.Departments)
             {
-                ComboBoxItem cb_room = new ComboBoxItem();
-                cb_room.Tag = item.RoomID;
-                cb_room.Content = "Вид техники: " + item.RoomName;
-                RentStart.Text = _obshaga.CheckInDate.ToString();
-                RentOut.Text = _obshaga.CheckOutDate.ToString();
-                primech.Text = _obshaga.Note;
-                room.Items.Add(cb_room);
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.DepartmentID;
+                cb_otdel.Content = item.DepartmentName;
+                Family.Text = _students.LastName;
+                Name.Text = _students.FirstName;
+                octh.Text = _students.MiddleName;
+                dateBrth.Text = _students.BirthDate.ToString();
+                pol.Text = _students.Gender;
+                kontNomer.Text = _students.ContactNumber;
+                obraz.Text = _students.Obrazovanie;
+                finance.Text = _students.Finance;
+                godPostup.Text = _students.YearPostup.ToString();
+                godOkonch.Text = _students.YearOkonch.ToString();
+                infoOtchis.Text = _students.InfoOtchiz;
+                dateOtchiz.SelectedDate = _students.DateOtchiz;
+                primech.Text = _students.Note;
+                svORodit.Text = _students.ParentsInfo;
+                vziskanie.Text = _students.Vziskanie;
+                otdel.Items.Add(cb_otdel);
             }
         }
 
         private void Click_Obshaga_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Departments Id_departments_temp;
+            Id_departments_temp = ClassConnection.Connection.Departments.Find(x => x.DepartmentID == Convert.ToInt32(((ComboBoxItem)otdel.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Students);
             if (students.LastName == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
                 }
-                else MessageBox.Show("Запрос на добавление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на добавление студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update Students [LastName] = N'{Family.Text}', [FirstName] = N'{Name.Text}', [MiddleName] = N'{octh.Text}', [BirthDate] = N'{dateBrth.Text}', [Gender] = N'{pol.Text}', [ContactNumber] = N'{kontNomer.Text}', [Obrazovanie] = N'{obraz.Text}', [Otdelenie] = N'{otdel.Text}', [Groups] = N'{group.Text}', [Finance] = N'{finance.Text}', [YearPostup] = N'{godPostup.Text}', [YearOkonch] = N'{godOkonch.Text}', [InfoOtchiz] = N'{infoOtchis.Text}', [DateOthiz] = N'{dateOtchiz.Text}', [Note] = N'{primech.Text}', [ParentsInfo] = N'{svORodit.Text}', [Vziskanie] = N'{vziskanie.Text}' Where [DepartmentID] = {students.StudentID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
                 }
-                else MessageBox.Show("Запрос на изменение цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на изменение студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -75,14 +89,14 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete Students Where [DepartmentID] = " + students.StudentID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
                 }
-                else MessageBox.Show("Запрос на удаление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {

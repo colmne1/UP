@@ -40,10 +40,12 @@ namespace UP.Pages.PagesInTable
 
         private void Click_SPPP_Meetings_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Students Id_student_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.SPPP_Meetings);
             if (sppp.OsnVizov == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into SPPP_Meetings ([MeetingID], [StudentID], [Date], [OsnVizov], [Sotrudniki], [Predstaviteli], [ReasonForCall], [Reshenie], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{RentStart.Text}', '{osnVizov.Text}', '{sotrud.Text}', '{predstav.Text}', '{prichVizov.Text}', '{resh.Text}', '{primech.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -54,7 +56,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update SPPP_Meetings [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [Date] = N'{RentStart.Text}', [OsnVizov] = N'{osnVizov.Text}', [Sotrudniki] = N'{sotrud.Text}', [Predstaviteli] = N'{predstav.Text}', [ReasonForCall] = N'{prichVizov.Text}', [Reshenie] = N'{resh.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {sppp.MeetingID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -75,7 +77,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.SPPP_Meetings);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete SPPP_Meetings Where [MeetingID] = " + sppp.MeetingID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

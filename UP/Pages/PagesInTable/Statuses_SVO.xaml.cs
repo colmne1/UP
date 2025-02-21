@@ -35,10 +35,12 @@ namespace UP.Pages.PagesInTable
         }
         private void Click_Statuses_SVO_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Students Id_student_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_Sirots);
             if (svo.DocumentOsnov == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Statuses_SVO ([SVOStatusID], [StudentID], [DocumentOsnov], [StartDate], [EndDate]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -49,7 +51,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update Statuses_SVO [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentOsnov] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}' Where [SVOStatusID] = {svo.SVOStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -70,7 +72,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_SVO);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete Statuses_SVO Where [SVOStatusID] = " + svo.SVOStatusID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

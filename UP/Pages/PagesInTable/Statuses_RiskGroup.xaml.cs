@@ -41,10 +41,12 @@ namespace UP.Pages.PagesInTable
 
         private void Click_Statuses_RiskGroup_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Students Id_student_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_RiskGroup);
             if (risk.RiskGroupType == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Statuses_RiskGroup ([RiskGroupID], [StudentID], [RiskGroupType], [DateStart], [DateEnd], [OsnPost], [OsnSnat], [PrichinaPost], [PrichinaSnat], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{tip.Text}', '{nachUch.Text}', '{konUch.Text}', '{osnUch.Text}', '{osnSnatUch.Text}', '{prichUch.Text}', '{prichSnUch.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -55,7 +57,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update Statuses_RiskGroup [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -76,7 +78,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_RiskGroup);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete Statuses_RiskGroup Where [RiskGroupID] = " + risk.RiskGroupID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

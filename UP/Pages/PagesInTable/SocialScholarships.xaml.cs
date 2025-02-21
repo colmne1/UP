@@ -36,10 +36,12 @@ namespace UP.Pages.PagesInTable
 
         private void Click_SocialScholarships_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Students Id_student_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.SocialScholarships);
             if (social.DocumentReason == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into SocialScholarships ([ScholarshipID], [StudentID], [DocumentReason], [StartDate], [EndDate]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{docOsn.Text}', '{nachVipl.Text}', '{konVipl.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -50,7 +52,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update SocialScholarships [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentReason] = N'{docOsn.Text}, [StartDate] = N'{nachVipl.Text}, [EndDate] = N'{konVipl.Text} Where [ScholarshipID] = {social.ScholarshipID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -71,7 +73,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.SocialScholarships);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete SocialScholarships Where [ScholarshipID] = " + social.ScholarshipID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

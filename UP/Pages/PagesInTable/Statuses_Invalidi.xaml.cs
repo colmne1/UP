@@ -38,10 +38,12 @@ namespace UP.Pages.PagesInTable
 
         private void Click_Statuses_Invalidi_Redact(object sender, RoutedEventArgs e)
         {
+            ClassModules.Students Id_student_temp;
+            Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_Invalid);
             if (invalid.OrderNumber == null)
             {
-                string query = $"Insert Into Departments ([DepartmentID], [DepartmentName]) Values ({id.ToString()}, '{DepName.Text}')";
+                string query = $"Insert Into Statuses_Invalid ([DisabilityStatusID], [StudentID], [OrderNumber], [StartDate], [EndDate], [DisabilityType], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}', '{vidInvalid.Text}', '{primech.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -52,7 +54,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update сeh Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {obshaga.DormitoryID}";
+                string query = $"Update Statuses_Invalid [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -73,7 +75,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_Invalid);
-                string query = "Delete Departments Where [DepartmentID] = " + obshaga.DormitoryID.ToString() + "";
+                string query = "Delete Statuses_Invalid Where [DisabilityStatusID] = " + invalid.DisabilityStatusID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
