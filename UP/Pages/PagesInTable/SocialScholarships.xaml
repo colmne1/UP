@@ -23,11 +23,11 @@
                         <ComboBox x:Name="student" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="Социальная стипендия" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Документ основание" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <TextBox x:Name="docOsn" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_PreviewTextInput_2" LostFocus="TextBox_LostFocus_2" GotFocus="TextBox_GotFocus_2"/>
+                        <TextBox x:Name="docOsn" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top"/>
                         <Label Content="Начало выплаты" Margin="39,265,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <TextBox x:Name="nachVipl" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,310,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_3" GotFocus="TextBox_GotFocus_3"/>
+                        <TextBox x:Name="nachVipl" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,310,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Конец выплаты" Margin="39,355,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <TextBox x:Name="konVipl" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,400,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_PreviewTextInput_4" LostFocus="TextBox_LostFocus_4" GotFocus="TextBox_GotFocus_4"/>
+                        <TextBox x:Name="konVipl" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,400,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_SocialScholarships_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

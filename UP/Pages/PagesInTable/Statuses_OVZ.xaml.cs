@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -86,6 +87,14 @@ namespace UP.Pages.PagesInTable
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void TextBox_Data(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^\d{4}(-)\d{2}\1\d{2}$");
+            if (!regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
             }
         }
     }

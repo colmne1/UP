@@ -25,11 +25,11 @@
                         <Label Content="Комната" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <ComboBox x:Name="room" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top"/>
                         <Label Content="Дата заселения" Margin="40,260,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="RentStart" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700"/>
+                        <DatePicker x:Name="RentStart" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Дата выселения" Margin="40,324,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="RentOut" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700"/>
+                        <DatePicker x:Name="RentOut" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Примечание" Margin="39,388,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <TextBox x:Name="primech" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,422,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_3" GotFocus="TextBox_GotFocus_3"/>
+                        <TextBox x:Name="primech" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,422,193,0" VerticalAlignment="Top"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Obshaga_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

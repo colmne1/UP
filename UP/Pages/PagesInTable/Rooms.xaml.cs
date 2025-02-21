@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -81,6 +82,14 @@ namespace UP.Pages.PagesInTable
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+        private void TextBox_Chisla(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[1-9]");
+            if (!regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
             }
         }
     }
