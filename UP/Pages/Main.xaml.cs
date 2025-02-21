@@ -181,7 +181,7 @@ namespace UP.Pages
                 }
                 if (page_select == page_main.Statuses_Invalid && Login.Login.UserInfo[1] == "admin")
                 {
-                    var add = new Pages.PagesInTable.Statuses_Invalid(new ClassModules.Statuses_Invalid());
+                    var add = new Pages.PagesInTable.Statuses_Invalidi(new ClassModules.Statuses_Invalid());
                     parrent.Children.Add(new Elements.Add(add));
                 }
             });
@@ -404,55 +404,55 @@ namespace UP.Pages
                 {
                     parrent.Children.Clear();
                     var VoditelById = Connection.StatusesRiskGroups.FindAll(x => x.RiskGroupID.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in VoditelById) parrent.Children.Add(new Elements.Voditel_items(itemSearch));
+                    foreach (var itemSearch in VoditelById) parrent.Children.Add(new Elements.Statuses_RiskGroup_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_Invalid)
                 {
                     parrent.Children.Clear();
                     var techniqueByName = Connection.StatusesInvalids.FindAll(x => x.DisabilityType.Contains(Search.Text));
-                    foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Technique_items(itemSearch));
+                    foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Statuses_Invalid_items(itemSearch));
                 }
                 else if (page_select == page_main.SPPP_Meetings)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.SpppMeetings.FindAll(x => x.OsnVizov.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.SPPP_Meetings_items(itemSearch));
                 }
                 else if (page_select == page_main.Students)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.Students.FindAll(x => x.LastName.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Students_items(itemSearch));
                 }
                 else if (page_select == page_main.Departments)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.Departments.FindAll(x => x.DepartmentName.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Departments_items(itemSearch));
                 }
                 else if (page_select == page_main.Obshaga)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.Obshagas.FindAll(x => x.Note.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Obshaga_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_OVZ)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.StatusesOvzs.FindAll(x => x.Prikaz.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_OVZ_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_SVO)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.StatusesSvos.FindAll(x => x.DocumentOsnov.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_SVO_items(itemSearch));
                 }
                 else if (page_select == page_main.Statuses_Sirots)
                 {
                     parrent.Children.Clear();
                     var typeOfTroopByName = Connection.StatusesSirots.FindAll(x => x.OrderNumber.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Zapchast_items(itemSearch));
+                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_Sirots_items(itemSearch));
                 }
 
             }
