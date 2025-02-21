@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UP.Elements"
              mc:Ignorable="d">
-    <Border x:Name="border" Opacity="1" Margin="10,5,10,5" Height="160" CornerRadius="7,7,7,7" Background="#FF2C2C2C">
+    <Border x:Name="border" Opacity="1" Margin="10,5,10,5" Height="160" CornerRadius="7,7,7,7" Background="#9EA1A2">
         <Grid>
             <Grid.Resources>
                 <ResourceDictionary Source="/Resource/Dictionary.xaml"/>
@@ -18,6 +18,7 @@
             <Label x:Name="prichPost" Content="Причина поставки на учет"    Margin="19,94,417,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
             <Label x:Name="prichSnat" Content="Причина снятия с учета"    Margin="292,94,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
             <Label x:Name="primech" Content="Примечание"    Margin="19,123,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="student" Content="Студент:"    Margin="292,123,263,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
             <Grid x:Name="Buttons">
                 <Button Style="{StaticResource BtnRedac}" Background="#FF2C2C2C" Margin="0,5,9.6,0" VerticalAlignment="Top" Height="40" Width="63" Click="Click_redact" HorizontalAlignment="Right">
                     <Image Source="/Images/redac.png" Width="20" Height="20"/>

@@ -205,7 +205,7 @@ namespace ClassConnection
                                 Gender = Convert.ToString(reader.GetValue(5)),
                                 ContactNumber = Convert.ToString(reader.GetValue(6)),
                                 Obrazovanie = Convert.ToString(reader.GetValue(7)),
-                                Otdelenie = Convert.ToString(reader.GetValue(8)),
+                                Otdelenie = Convert.ToInt32(reader.GetValue(8)),
                                 Groups = Convert.ToString(reader.GetValue(9)),
                                 Finance = Convert.ToString(reader.GetValue(10)),
                                 YearPostup = Convert.ToInt32(reader.GetValue(11)),
@@ -216,7 +216,6 @@ namespace ClassConnection
                                 ParentsInfo = Convert.ToString(reader.GetValue(16)),
                                 Vziskanie = Convert.ToString(reader.GetValue(17)),
                                 Files = Convert.ToString(reader.GetValue(5)),  // Handle null values
-                                DepartamentsID = Convert.ToInt32(reader.GetValue(7))
                             };
                             Students.Add(student);
                         }
