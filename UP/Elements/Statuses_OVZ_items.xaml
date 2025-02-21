@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UP.Elements"
              mc:Ignorable="d">
-    <Border x:Name="border" Opacity="1" Margin="10,5,10,5" Height="130" CornerRadius="7,7,7,7" Background="#FF2C2C2C">
+    <Border x:Name="border" Opacity="1" Margin="10,5,10,5" Height="130" CornerRadius="7,7,7,7" Background="#9EA1A2">
         <Grid>
             <Grid.Resources>
                 <ResourceDictionary Source="/Resource/Dictionary.xaml"/>
