@@ -16,7 +16,7 @@ namespace ClassModules
         public string Gender { get; set; }
         public string ContactNumber { get; set; }
         public string Obrazovanie { get; set; }
-        public string Otdelenie { get; set; }
+        public int Otdelenie { get; set; }
         public string Groups { get; set; }
         public string Finance { get; set; }
         public int YearPostup { get; set; }
@@ -27,6 +27,5 @@ namespace ClassModules
         public string ParentsInfo { get; set; }
         public string Vziskanie { get; set; }
         public string Files { get; set; }
-        public int DepartamentsID { get; set; }
     }
 }
