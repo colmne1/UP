@@ -315,6 +315,22 @@ namespace ClassConnection
                         }
                         reader.Close();
                         break;
+                    case Tables.users:
+                        reader = ExecuteQuery("SELECT * FROM users ORDER BY UsersID");
+                        StatusesSirots.Clear();
+                        while (reader.Read())
+                        {
+                            Users user = new Users
+                            {
+                                UsersID = Convert.ToInt32(reader.GetValue(0)),
+                                Login = Convert.ToString(reader.GetValue(1)),
+                                Password = Convert.ToString(reader.GetValue(2)),
+                                Role = Convert.ToString(reader.GetValue(3))
+                            };
+                            users.Add(user);
+                        }
+                        reader.Close();
+                        break;
                 }
 
             }

@@ -27,7 +27,7 @@
                         <Label Content="Отчество" Margin="40,313,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="octh" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,347,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_3" GotFocus="TextBox_GotFocus_3" PreviewTextInput="TextBox_PreviewTextInput_1"/>
                         <Label Content="Дата рождения" Margin="40,387,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="dateBrth" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,421,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data"/>
+                        <DatePicker x:Name="dateBrth"  Height="35" Background="#FFDEDEDE" Margin="40,421,193,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Пол" Margin="40,461,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="pol" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,495,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_3"/>
                         <Label Content="Контактный номер" Margin="40,535,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
