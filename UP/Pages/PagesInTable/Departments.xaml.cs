@@ -47,7 +47,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Departments [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {departments.DepartmentID}";
+                string query = $"Update Departments Set [DepartmentName] = N'{DepName.Text}' Where [DepartmentID] = {departments.DepartmentID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

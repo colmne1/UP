@@ -15,8 +15,6 @@ namespace ClassConnection
     {
         public static bool IsConnected = false;
         public static string ConnectionString;
-
-        // Define all your tables as enums
         public enum Tables
         {
             Rooms,
@@ -32,8 +30,6 @@ namespace ClassConnection
             Statuses_Sirots,
             users
         }
-
-        // Lists to hold data from tables (populate as needed)
         public static List<Rooms> Rooms = new List<Rooms>();
         public static List<SocialScholarships> SocialScholarships = new List<SocialScholarships>();
         public static List<Statuses_RiskGroup> StatusesRiskGroups = new List<Statuses_RiskGroup>();

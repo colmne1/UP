@@ -59,7 +59,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Obshaga [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note] = N'{Id_student_temp.StudentID.ToString()}', '{room.Text}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}' Where [DormitoryID] = {obshaga.DormitoryID}";
+                string query = $"Update Obshaga Set [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note] = N'{Id_student_temp.StudentID.ToString()}', '{room.Text}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}' Where [DormitoryID] = {obshaga.DormitoryID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

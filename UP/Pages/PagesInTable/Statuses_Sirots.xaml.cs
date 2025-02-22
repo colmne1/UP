@@ -53,7 +53,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_Sirots [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [OrphanStatusID] = {sirots.OrphanStatusID}";
+                string query = $"Update Statuses_Sirots Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [OrphanStatusID] = {sirots.OrphanStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

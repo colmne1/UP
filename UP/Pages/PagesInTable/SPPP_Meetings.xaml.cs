@@ -57,7 +57,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update SPPP_Meetings [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [Date] = N'{RentStart.Text}', [OsnVizov] = N'{osnVizov.Text}', [Sotrudniki] = N'{sotrud.Text}', [Predstaviteli] = N'{predstav.Text}', [ReasonForCall] = N'{prichVizov.Text}', [Reshenie] = N'{resh.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {sppp.MeetingID}";
+                string query = $"Update SPPP_Meetings Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [Date] = N'{RentStart.Text}', [OsnVizov] = N'{osnVizov.Text}', [Sotrudniki] = N'{sotrud.Text}', [Predstaviteli] = N'{predstav.Text}', [ReasonForCall] = N'{prichVizov.Text}', [Reshenie] = N'{resh.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {sppp.MeetingID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

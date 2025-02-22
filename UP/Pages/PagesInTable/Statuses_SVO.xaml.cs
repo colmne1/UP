@@ -52,7 +52,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_SVO [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentOsnov] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}' Where [SVOStatusID] = {svo.SVOStatusID}";
+                string query = $"Update Statuses_SVO Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentOsnov] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}' Where [SVOStatusID] = {svo.SVOStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

@@ -55,7 +55,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_Invalid [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
+                string query = $"Update Statuses_Invalid Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

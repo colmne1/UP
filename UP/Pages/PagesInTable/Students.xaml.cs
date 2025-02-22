@@ -70,7 +70,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Students [LastName] = N'{Family.Text}', [FirstName] = N'{Name.Text}', [MiddleName] = N'{octh.Text}', [BirthDate] = N'{dateBrth.Text}', [Gender] = N'{pol.Text}', [ContactNumber] = N'{kontNomer.Text}', [Obrazovanie] = N'{obraz.Text}', [Otdelenie] = N'{otdel.Text}', [Groups] = N'{group.Text}', [Finance] = N'{finance.Text}', [YearPostup] = N'{godPostup.Text}', [YearOkonch] = N'{godOkonch.Text}', [InfoOtchiz] = N'{infoOtchis.Text}', [DateOthiz] = N'{dateOtchiz.Text}', [Note] = N'{primech.Text}', [ParentsInfo] = N'{svORodit.Text}', [Vziskanie] = N'{vziskanie.Text}' Where [DepartmentID] = {students.StudentID}";
+                string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{otdel.Text}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOthiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -91,7 +91,7 @@ namespace UP.Pages.PagesInTable
             try
             {
                 Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
-                string query = "Delete Students Where [DepartmentID] = " + students.StudentID.ToString() + "";
+                string query = "Delete Students Where [StudentID] = " + students.StudentID.ToString() + "";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

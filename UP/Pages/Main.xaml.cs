@@ -107,10 +107,12 @@ namespace UP.Pages
         }
         private void Click_Rooms(object sender, RoutedEventArgs e)
         {
-            Search.IsEnabled = true;
-            page_select = page_main.Rooms;
-            parrent.Children.Clear();
-            LoadRooms();
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
+                Search.IsEnabled = true;
+                page_select = page_main.Rooms;
+                parrent.Children.Clear();
+                LoadRooms();
+
         }
 
         private void LoadSocialScholarships()
@@ -134,6 +136,7 @@ namespace UP.Pages
         }
         private void Click_SocialScholarships(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.SocialScholarships;
             parrent.Children.Clear();
@@ -161,6 +164,7 @@ namespace UP.Pages
         }
         private void Click_Statuses_RiskGroup(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Statuses_RiskGroup;
             parrent.Children.Clear();
@@ -188,6 +192,7 @@ namespace UP.Pages
         }
         private void Click_Statuses_Invalid(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Statuses_Invalid;
             parrent.Children.Clear();
@@ -215,6 +220,7 @@ namespace UP.Pages
         }
         private void Click_SPPP_Meetings(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.SPPP_Meetings;
             parrent.Children.Clear();
@@ -241,6 +247,7 @@ namespace UP.Pages
         }
         private void Click_Students(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Students;
             parrent.Children.Clear();
@@ -267,6 +274,7 @@ namespace UP.Pages
         }
         private void Click_Departments(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Departments;
             parrent.Children.Clear();
@@ -294,6 +302,7 @@ namespace UP.Pages
         }
         private void Click_Obshaga(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Obshaga;
             parrent.Children.Clear();
@@ -321,6 +330,7 @@ namespace UP.Pages
         }
         private void Click_Statuses_OVZ(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Statuses_OVZ;
             parrent.Children.Clear();
@@ -348,6 +358,7 @@ namespace UP.Pages
         }
         private void Click_Statuses_SVO(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Statuses_SVO;
             parrent.Children.Clear();
@@ -375,6 +386,7 @@ namespace UP.Pages
         }
         private void Click_Statuses_Sirots(object sender, RoutedEventArgs e)
         {
+            if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
             page_select = page_main.Statuses_Sirots;
             parrent.Children.Clear();

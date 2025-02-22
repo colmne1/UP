@@ -53,7 +53,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update SocialScholarships [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentReason] = N'{docOsn.Text}, [StartDate] = N'{nachVipl.Text}, [EndDate] = N'{konVipl.Text} Where [ScholarshipID] = {social.ScholarshipID}";
+                string query = $"Update SocialScholarships Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentReason] = N'{docOsn.Text}, [StartDate] = N'{nachVipl.Text}, [EndDate] = N'{konVipl.Text} Where [ScholarshipID] = {social.ScholarshipID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

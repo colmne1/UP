@@ -58,7 +58,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_RiskGroup [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
+                string query = $"Update Statuses_RiskGroup Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
