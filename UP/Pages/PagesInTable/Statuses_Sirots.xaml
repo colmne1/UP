@@ -27,9 +27,9 @@
                         <Label Content="Примечание" Margin="39,390,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="primech" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,435,193,0" VerticalAlignment="Top"/>
                         <Label Content="Дата начала статуса" Margin="40,260,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="nachStat" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700" PreviewTextInput="TextBox_Data"/>
+                        <DatePicker x:Name="nachStat" Text="Наименование" Style="{StaticResource styleDatepicker}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Дата конца статуса" Margin="40,324,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="konStat" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700" PreviewTextInput="TextBox_Data"/>
+                        <DatePicker x:Name="konStat" Text="Наименование" Style="{StaticResource styleDatepicker}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Statuses_Sirots_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

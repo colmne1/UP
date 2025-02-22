@@ -23,7 +23,7 @@
                         <ComboBox x:Name="student" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="СППП" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Дата" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker x:Name="RentStart" Text="Наименование" Style="{StaticResource BaseBox}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="39,209,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="700" PreviewTextInput="TextBox_Data"/>
+                        <DatePicker Style="{StaticResource styleDatepicker}" x:Name="RentStart" Text="Наименование" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="39,209,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Основание вызова" Margin="39,239,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="osnVizov" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="39,273,194,0" VerticalAlignment="Top"/>
                         <Label Content="Присутствовали сотрудники" Margin="40,313,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>

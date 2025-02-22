@@ -38,14 +38,14 @@ namespace UP.Pages.PagesInTable
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Rooms);
             if (rooms.RoomName == null)
             {
-                string query = $"Insert Into Rooms ([RoomID], [RoomName],[Vmestim]) Values ({id.ToString()}, '{nameroom.Text}','{vmestim.Text}')";
+                string query = $"Insert Into Rooms ([RoomName], [Vmestim]) Values ('{nameroom.Text}','{vmestim.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Rooms);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Rooms);
                 }
-                else MessageBox.Show("Запрос на добавление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на добавление комнаты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Rooms);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Rooms);
                 }
-                else MessageBox.Show("Запрос на изменение цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на изменение комнаты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -77,7 +77,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Rooms);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Rooms);
                 }
-                else MessageBox.Show("Запрос на удаление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление комнаты не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {

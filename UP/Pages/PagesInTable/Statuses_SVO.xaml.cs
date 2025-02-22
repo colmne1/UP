@@ -48,7 +48,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_SVO);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_SVO);
                 }
-                else MessageBox.Show("Запрос на добавление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на добавление сво не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_SVO);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_SVO);
                 }
-                else MessageBox.Show("Запрос на изменение цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на изменение сво не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -80,7 +80,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_SVO);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_SVO);
                 }
-                else MessageBox.Show("Запрос на удаление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление сво не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {

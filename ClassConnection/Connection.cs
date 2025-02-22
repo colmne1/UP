@@ -350,81 +350,81 @@ namespace ClassConnection
                 switch (table)
                 {
                     case Tables.Rooms:
-                        if (Rooms.Count > 0)
+                        if (Rooms.Count >= 1)
                         {
                             return Rooms.Max(r => r.RoomID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.SocialScholarships:
-                        if (SocialScholarships.Count > 0)
+                        if (SocialScholarships.Count >= 1)
                         {
                             return SocialScholarships.Max(s => s.ScholarshipID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Statuses_RiskGroup:
-                        if (StatusesRiskGroups.Count > 0)
+                        if (StatusesRiskGroups.Count >= 1)
                         {
                             return StatusesRiskGroups.Max(s => s.RiskGroupID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Statuses_Invalid:
-                        if (StatusesInvalids.Count > 0)
+                        if (StatusesInvalids.Count >= 1)
                         {
                             return StatusesInvalids.Max(s => s.DisabilityStatusID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.SPPP_Meetings:
-                        if (SpppMeetings.Count > 0)
+                        if (SpppMeetings.Count >= 1)
                         {
                             return SpppMeetings.Max(s => s.MeetingID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Students:
-                        if (Students.Count > 0)
+                        if (Students.Count >= 1)
                         {
                             return Students.Max(s => s.StudentID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Departments:
-                        if (Departments.Count > 0)
+                        if (Departments.Count >= 1)
                         {
                             return Departments.Max(d => d.DepartmentID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Obshaga:
-                        if (Obshagas.Count > 0)
+                        if (Obshagas.Count >= 1)
                         {
                             return Obshagas.Max(o => o.DormitoryID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Statuses_OVZ:
-                        if (StatusesOvzs.Count > 0)
+                        if (StatusesOvzs.Count >= 1)
                         {
                             return StatusesOvzs.Max(s => s.OVZStatusID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Statuses_SVO:
-                        if (StatusesSvos.Count > 0)
+                        if (StatusesSvos.Count >= 1)
                         {
                             return StatusesSvos.Max(s => s.SVOStatusID) + 1;
                         }
-                        return 1;
+                        else return 1;
 
                     case Tables.Statuses_Sirots:
-                        if (StatusesSirots.Count > 0)
+                        if (StatusesSirots.Count >= 1)
                         {
                             return StatusesSirots.Max(s => s.OrphanStatusID) + 1;
                         }
-                         else return 1;
+                        else return 1;
                 }
                 return -1;
             }

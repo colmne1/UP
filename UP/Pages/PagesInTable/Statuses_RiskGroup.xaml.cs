@@ -54,7 +54,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_RiskGroup);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_RiskGroup);
                 }
-                else MessageBox.Show("Запрос на добавление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на добавление группы риска не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_RiskGroup);
                     MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_RiskGroup);
                 }
-                else MessageBox.Show("Запрос на изменение цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на изменение группы риска не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -86,7 +86,7 @@ namespace UP.Pages.PagesInTable
                     Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Statuses_RiskGroup);
                     Main.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Statuses_RiskGroup);
                 }
-                else MessageBox.Show("Запрос на удаление цеха не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else MessageBox.Show("Запрос на удаление группы риска не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             catch (Exception ex)
             {
