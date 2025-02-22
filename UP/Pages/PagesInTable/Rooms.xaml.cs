@@ -28,6 +28,7 @@ namespace UP.Pages.PagesInTable
             rooms = _rooms;
             if (_rooms.RoomName != null)
             {
+
                 nameroom.Text = _rooms.RoomName;
                 vmestim.Text = _rooms.Vmestim;
             }
