@@ -57,27 +57,37 @@ namespace UP.Pages.PagesInTable
             ClassModules.Departments Id_departments_temp;
             Id_departments_temp = ClassConnection.Connection.Departments.Find(x => x.DepartmentID == Convert.ToInt32(((ComboBoxItem)otdel.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Students);
-            if (students.LastName == null)
+            Regex regex = new Regex(@"^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$");
+            if (!regex.IsMatch(kontNomer.Text))
             {
-                string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}')";
-                var query_apply = Login.Login.connection.ExecuteQuery(query);
-                if (query_apply != null)
+                e.Handled = true;
+
+                if (students.LastName == null)
                 {
-                    Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
+                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}')";
+                    var query_apply = Login.Login.connection.ExecuteQuery(query);
+                    if (query_apply != null)
+                    {
+                        Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
+                    }
+                    else MessageBox.Show("Запрос на добавление студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                else MessageBox.Show("Запрос на добавление студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                else
+                {
+                    string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{otdel.Text}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOthiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
+                    var query_apply = Login.Login.connection.ExecuteQuery(query);
+                    if (query_apply != null)
+                    {
+                        Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
+                        MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
+                    }
+                    else MessageBox.Show("Запрос на изменение студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             else
             {
-                string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{otdel.Text}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOthiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
-                var query_apply = Login.Login.connection.ExecuteQuery(query);
-                if (query_apply != null)
-                {
-                    Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
-                    MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main, null, null, Main.page_main.Students);
-                }
-                else MessageBox.Show("Запрос на изменение студента не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Неправильный ввод контактного номера");
             }
         }
 
@@ -167,7 +177,31 @@ namespace UP.Pages.PagesInTable
                 Family.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
             }
         }
-
+        private void TextBox_LostFocus_4(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            string[] words = textBox.Text.Split(' ');
+            if (words.Any(word => word.Length == 0))
+            {
+                textBox.Text = "Ошибка: введите 1 слово";
+                Family.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+            }
+        }
+        private void TextBox_GotFocus_4(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.StartsWith("Ошибка:"))
+            {
+                textBox.Text = "";
+                ColorAnimation animation = new ColorAnimation();
+                animation.From = (Color)ColorConverter.ConvertFromString("#FB3F51");
+                animation.To = Colors.Transparent;
+                animation.Duration = new Duration(TimeSpan.FromSeconds(2));
+                SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FB3F51"));
+                brush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                Family.BorderBrush = brush;
+            }
+        }
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -200,14 +234,14 @@ namespace UP.Pages.PagesInTable
                 e.Handled = true;
             }
         }
-        private void TextBox_Number(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex(@"^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$");
-            if (!regex.IsMatch(e.Text))
-            {
-                e.Handled = true;
-            }
-        }
+        //private void TextBox_Number(object sender, TextCompositionEventArgs e)
+        //{
+        //Regex regex = new Regex(@"^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$");
+        //    if (!regex.IsMatch(e.Text))
+        //    {
+        //        e.Handled = true;
+        //    }
+        //}
 
         private void TextBox_Data1(object sender, TextCompositionEventArgs e)
         {

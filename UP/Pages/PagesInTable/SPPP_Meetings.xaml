@@ -20,18 +20,22 @@
                 <Border MinHeight="600">
                     <Grid Height="885">
                         <Label Content="Студент" Margin="39,95,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="student" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="student"  Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="СППП" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Дата" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <DatePicker Style="{StaticResource styleDatepicker}" x:Name="RentStart" Text="Наименование" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="39,209,0,0" RenderTransformOrigin="0.783,1.923" Height="25" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Основание вызова" Margin="39,239,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="osnVizov" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="39,273,194,0" VerticalAlignment="Top"/>
                         <Label Content="Присутствовали сотрудники" Margin="40,313,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="sotrud" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,347,193,0" VerticalAlignment="Top">
-                            <ComboBoxItem></ComboBoxItem>
+                        <ComboBox x:Name="sotrud" Height="35" Background="#FFDEDEDE" Margin="40,347,193,0" VerticalAlignment="Top">
+                            <ComboBoxItem>Yes</ComboBoxItem>
+                            <ComboBoxItem>No</ComboBoxItem>
                         </ComboBox>
                         <Label Content="Присутствовали представители" Margin="40,387,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="predstav" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,421,193,0" VerticalAlignment="Top" />
+                        <ComboBox x:Name="predstav" Height="35" Background="#FFDEDEDE" Margin="40,421,193,0" VerticalAlignment="Top">
+                            <ComboBoxItem>Yes</ComboBoxItem>
+                            <ComboBoxItem>No</ComboBoxItem>
+                        </ComboBox>
                         <Label Content="Причина вызова" Margin="40,461,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="prichVizov" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,495,193,0" VerticalAlignment="Top"/>
                         <Label Content="Решение" Margin="40,535,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>

@@ -20,7 +20,7 @@
                 <Border MinHeight="600">
                     <Grid>
                         <Label Content="Студент" Margin="39,95,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="student" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="student" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="Инвалиды" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Приказ о присвоении статуса" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="prikaz" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top"/>
