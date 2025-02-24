@@ -64,7 +64,7 @@ namespace UP.Pages.PagesInTable
 
                 if (students.LastName == null)
                 {
-                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}')";
+                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie], [Files]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}', NULL)";
                     var query_apply = Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {
@@ -245,7 +245,7 @@ namespace UP.Pages.PagesInTable
 
         private void TextBox_Data1(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"^[1-9]{4}$");
+            Regex regex = new Regex(@"^[1-9]$");
             if (!regex.IsMatch(e.Text))
             {
                 e.Handled = true;

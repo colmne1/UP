@@ -28,8 +28,8 @@ namespace UP.Elements
             Departments = _Departments;
             if (_Departments.DepartmentName != null)
             {
-                otdel_name.Content = "Цех №" + _Departments.DepartmentID.ToString();
-                name.Content = "Оборудование: " + _Departments.DepartmentName;
+                otdel_name.Content = "Отделение №" + _Departments.DepartmentID.ToString();
+                name.Content = "Наизвание: " + _Departments.DepartmentName;
             }
         }
         private void Click_redact(object sender, RoutedEventArgs e) => MainWindow.main.Animation_move(MainWindow.main.scroll_main, MainWindow.main.frame_main, MainWindow.main.frame_main, new Pages.PagesInTable.Departments(Departments));

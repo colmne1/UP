@@ -135,7 +135,7 @@ namespace ClassConnection
                                 PrichinaPost = Convert.ToString(reader.GetValue(7)),
                                 PrichinaSnat = Convert.ToString(reader.GetValue(8)),
                                 Note = Convert.ToString(reader.GetValue(9)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(10))
                             };
                             StatusesRiskGroups.Add(riskGroup);
                         }
@@ -156,7 +156,7 @@ namespace ClassConnection
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 DisabilityType = Convert.ToString(reader.GetValue(5)),
                                 Note = Convert.ToString(reader.GetValue(6)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(7))
                             };
                             StatusesInvalids.Add(invalid);
                         }
@@ -179,7 +179,7 @@ namespace ClassConnection
                                 ReasonForCall = Convert.ToString(reader.GetValue(7)),
                                 Reshenie = Convert.ToString(reader.GetValue(8)),
                                 Note = Convert.ToString(reader.GetValue(9)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(10))
                             };
                             SpppMeetings.Add(meeting);
                         }
@@ -211,7 +211,7 @@ namespace ClassConnection
                                 Note = Convert.ToString(reader.GetValue(15)),
                                 ParentsInfo = Convert.ToString(reader.GetValue(16)),
                                 Vziskanie = Convert.ToString(reader.GetValue(17)),
-                                Files = Convert.ToString(reader.GetValue(5)),  // Handle null values
+                                Files = Convert.ToString(reader.GetValue(18))
                             };
                             Students.Add(student);
                         }
@@ -246,7 +246,7 @@ namespace ClassConnection
                                 CheckInDate = Convert.ToDateTime(reader.GetValue(3)),
                                 CheckOutDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(6))
                             };
                             Obshagas.Add(obshaga);
                         }
@@ -266,7 +266,7 @@ namespace ClassConnection
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(6))
                             };
                             StatusesOvzs.Add(ovz);
                         }
@@ -305,7 +305,7 @@ namespace ClassConnection
                                 StartDate = Convert.ToDateTime(reader.GetValue(3)),
                                 EndDate = Convert.ToDateTime(reader.GetValue(4)),
                                 Note = Convert.ToString(reader.GetValue(5)),
-                                Files = Convert.ToString(reader.GetValue(5))
+                                Files = Convert.ToString(reader.GetValue(6))
                             };
                             StatusesSirots.Add(sirot);
                         }

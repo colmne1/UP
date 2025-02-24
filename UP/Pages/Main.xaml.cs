@@ -230,11 +230,11 @@ namespace UP.Pages
         {
             Dispatcher.InvokeAsync(async () =>
             {
-                foreach (var item in ClassConnection.Connection.Students)
+                foreach (ClassModules.Students students_itm in ClassConnection.Connection.Students)
                 {
                     if (page_select == page_main.Students)
                     {
-                        parrent.Children.Add(new Elements.Students_items(item));
+                        parrent.Children.Add(new Elements.Students_items(students_itm));
                         await Task.Delay(90);
                     }
                 }
