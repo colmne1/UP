@@ -10,24 +10,24 @@
             <Grid.Resources>
                 <ResourceDictionary Source="/Resource/Dictionary.xaml"/>
             </Grid.Resources>
-            <Label x:Name="student_name"  Content="Студенты"                Margin="19,5,101,0"   Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Height="31" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-            <Label x:Name="lastName"  Content="Фамилия"                 Margin="19,36,417,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="firstName" Content="Имя"                 Margin="19,65,417,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="midName" Content="Отчество"    Margin="292,36,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="dateBrth" Content="Дата рождения"    Margin="292,65,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="gender" Content="Пол"    Margin="19,94,417,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="nomer" Content="Конктактный номер"    Margin="292,94,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="obrazovanie" Content="Образование"    Margin="19,123,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="otdel" Content="Отделение"    Margin="292,123,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="group" Content="Группа"    Margin="19,152,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="finance" Content="Финансирование"    Margin="292,152,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="godPostup" Content="Год поступления"    Margin="19,181,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="godOkonch" Content="Год окончания"    Margin="292,181,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="infoOOtchis" Content="Информация об отчислении"    Margin="19,210,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="dataOtchis" Content="Дата отчисления"    Margin="292,210,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="primech" Content="Примечание"    Margin="19,239,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="svORod" Content="Сведения о родителях"    Margin="292,239,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="vziskan" Content="Взыскания"    Margin="19,268,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="student_name"  Content="Студент "                Margin="19,5,101,0"   Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Height="31" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+            <Label x:Name="lastName"  Content="Фамилия "                 Margin="19,36,417,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="firstName" Content="Имя "                 Margin="19,65,417,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="midName" Content="Отчество "    Margin="292,36,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="dateBrth" Content="Дата рождения "    Margin="292,65,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="gender" Content="Пол "    Margin="19,94,417,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="nomer" Content="Конктактный номер "    Margin="292,94,259,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="obrazovanie" Content="Образование "    Margin="19,123,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="otdel" Content="Отделение "    Margin="292,123,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="group" Content="Группа "    Margin="19,152,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="finance" Content="Финансирование "    Margin="292,152,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="godPostup" Content="Год поступления "    Margin="19,181,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="godOkonch" Content="Год окончания "    Margin="292,181,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="infoOOtchis" Content="Информация об отчислении "    Margin="19,210,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="dataOtchis" Content="Дата отчисления "    Margin="292,210,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="primech" Content="Примечание "    Margin="19,239,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="svORod" Content="Сведения о родителях "    Margin="292,239,148,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="vziskan" Content="Взыскания "    Margin="19,268,421,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
 
             <Grid x:Name="Buttons" Margin="0,5,0,-5">
                 <Button Style="{StaticResource BtnRedac}" Background="#FF2C2C2C" Margin="0,5,9.6,0" VerticalAlignment="Top" Height="40" Width="63" Click="Click_redact" HorizontalAlignment="Right">

@@ -27,8 +27,13 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             ovz = _ovz;
-            if (_ovz.Prikaz != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
+                student.Items.Add(cb_otdel);
+
                 prikaz.Text = _ovz.Prikaz;
                 primech.Text = _ovz.Note;
                 nachStat.Text = _ovz.StartDate.ToString();

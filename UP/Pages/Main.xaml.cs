@@ -1,4 +1,5 @@
 ﻿using ClassConnection;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -249,9 +250,28 @@ namespace UP.Pages
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
             Search.IsEnabled = true;
-            page_select = page_main.Students;
-            parrent.Children.Clear();
-            LoadStudents();
+            if (page_select != page_main.Students)
+            {
+                page_select = page_main.Students;
+                DoubleAnimation opgridAnimation = new DoubleAnimation();
+                opgridAnimation.From = 1;
+                opgridAnimation.To = 0;
+                opgridAnimation.Duration = TimeSpan.FromSeconds(0.2);
+                opgridAnimation.Completed += delegate
+                {
+                    parrent.Children.Clear();
+                    DoubleAnimation opgriAnimation = new DoubleAnimation();
+                    opgriAnimation.From = 0;
+                    opgriAnimation.To = 1;
+                    opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
+                    opgriAnimation.Completed += delegate
+                    {
+                        LoadStudents();
+                    };
+                    parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
+                };
+                parrent.BeginAnimation(StackPanel.OpacityProperty, opgridAnimation);
+            }
         }
         private void LoadDepartments()
         {
@@ -648,21 +668,18 @@ namespace UP.Pages
 
         private void Click_Export(object sender, MouseButtonEventArgs e)
         {
-            Search.IsEnabled = false;
-            rooms_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            SocialScholarships_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            GroupRisk_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Invalid_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Students_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Zavedenia_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Obshaga_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            OVZ_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            SVO_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            Sirots_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
-            parrent.Children.Clear();
-            page_select = page_main.none;
-            var export = new ExportWindow();
-            export.ShowDialog();
+            //Search.IsEnabled = false;
+            //parrent.Children.Clear();
+            //page_select = page_main.none;
+            //var export = new ExportWindow();
+            //export.ShowDialog();
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "PDF (*.pdf)|*.pdf";
+            sfd.ShowDialog();
+            if(sfd.FileName != "")
+            {
+                OwnerContext.ReportPDF(sfd.FileName);
+            }
         }
     }
 }

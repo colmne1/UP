@@ -58,13 +58,13 @@ namespace UP.Pages.PagesInTable
             Id_departments_temp = ClassConnection.Connection.Departments.Find(x => x.DepartmentID == Convert.ToInt32(((ComboBoxItem)otdel.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Students);
             Regex regex = new Regex(@"^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$");
-            if (!regex.IsMatch(kontNomer.Text))
+            if (regex.IsMatch(kontNomer.Text))
             {
                 e.Handled = true;
 
                 if (students.LastName == null)
                 {
-                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOthiz], [Note], [ParentsInfo], [Vziskanie], [Files]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{obraz.Text}', '{otdel.Text}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}', NULL)";
+                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOtchiz], [Note], [ParentsInfo], [Vziskanie], [Files]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{obraz.Text}', '{Id_departments_temp.DepartmentID.ToString()}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}', NULL)";
                     var query_apply = Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {
@@ -75,7 +75,7 @@ namespace UP.Pages.PagesInTable
                 }
                 else
                 {
-                    string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{otdel.Text}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOthiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
+                    string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{Id_departments_temp.DepartmentID.ToString()}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOtchiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
                     var query_apply = Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {

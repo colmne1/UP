@@ -27,8 +27,13 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             social = _social;
-            if (_social.DocumentReason != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
+                student.Items.Add(cb_otdel);
+
                 docOsn.Text = _social.DocumentReason;
                 nachVipl.Text = _social.StartDate.ToString();
                 konVipl.Text = _social.EndDate.ToString();

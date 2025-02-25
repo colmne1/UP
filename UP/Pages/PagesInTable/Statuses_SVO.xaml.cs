@@ -27,11 +27,15 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             svo = _svo;
-            if (_svo.DocumentOsnov != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
                 prikaz.Text = _svo.DocumentOsnov;
                 nachStat.Text = _svo.StartDate.ToString();
                 konStat.Text = _svo.EndDate.ToString();
+                student.Items.Add(cb_otdel);
             }
         }
         private void Click_Statuses_SVO_Redact(object sender, RoutedEventArgs e)

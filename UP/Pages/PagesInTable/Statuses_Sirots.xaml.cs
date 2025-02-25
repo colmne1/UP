@@ -27,12 +27,16 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             sirots = _sirots;
-            if (_sirots.OrderNumber != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
                 prikaz.Text = _sirots.OrderNumber;
                 nachStat.Text = _sirots.StartDate.ToString();
                 konStat.Text = _sirots.EndDate.ToString();
                 primech.Text = _sirots.Note;
+                student.Items.Add(cb_otdel);
             }
         }
         private void Click_Statuses_Sirots_Redact(object sender, RoutedEventArgs e)

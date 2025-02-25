@@ -58,7 +58,7 @@ namespace UP.Elements
                 if (MessageBox.Show("Вы уверены, что хотите удалить информацию о студентах?", "Удаление информации", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
                     Pages.Login.Login.connection.LoadData(ClassConnection.Connection.Tables.Students);
-                    string query = $"Delete From Students Where SVOStatusID = " + student.StudentID.ToString() + "";
+                    string query = $"Delete From Students Where StudentID = " + student.StudentID.ToString() + "";
                     var query_apply = Pages.Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {

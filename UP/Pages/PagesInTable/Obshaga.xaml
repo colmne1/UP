@@ -23,7 +23,7 @@
                         <ComboBox x:Name="student" Height="35" Background="#FFDEDEDE" Margin="40,129,193,0" VerticalAlignment="Top"/>
                         <Label Content="Общежитие" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Комната" Margin="39,175,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="room" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="room" Height="35" Background="#FFDEDEDE" Margin="40,220,193,0" VerticalAlignment="Top"/>
                         <Label Content="Дата заселения" Margin="40,260,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <DatePicker x:Name="RentStart" Text="Наименование" Style="{StaticResource styleDatepicker}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Дата выселения" Margin="40,324,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>

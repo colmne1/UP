@@ -10,11 +10,11 @@
             <Grid.Resources>
                 <ResourceDictionary Source="/Resource/Dictionary.xaml"/>
             </Grid.Resources>
-            <Label x:Name="soc_name"  Content="Социальная стипендия"                Margin="19,5,101,0"   Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Height="35" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
-            <Label x:Name="docOsn"  Content="Документ основание"                 Margin="19,36,351,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="nachVipl" Content="Начало выплаты"                 Margin="19,65,351,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="konVipl" Content="Конец выплаты"    Margin="335,36,216,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-            <Label x:Name="student" Content="Студент:"    Margin="335,65,216,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="soc_name"  Content="Социальная стипендия "                Margin="19,5,101,0"   Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Height="35" VerticalAlignment="Top" FontWeight="Bold" FontSize="18"/>
+            <Label x:Name="docOsn"  Content="Документ основание "                 Margin="19,36,351,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="nachVipl" Content="Начало выплаты "                 Margin="19,65,351,0"  Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="konVipl" Content="Конец выплаты "    Margin="335,36,216,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
+            <Label x:Name="student" Content="Студент "    Margin="335,65,216,0" Foreground="White" FontFamily="Corbel" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
             <Grid x:Name="Buttons">
                 <Button Style="{StaticResource BtnRedac}" Background="#FF2C2C2C" Margin="0,5,9.6,0" VerticalAlignment="Top" Height="40" Width="63" Click="Click_redact" HorizontalAlignment="Right">
                     <Image Source="/Images/redac.png" Width="20" Height="20"/>

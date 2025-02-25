@@ -29,7 +29,7 @@ namespace UP.Elements
             sppp = _sppp;
             if (_sppp.OsnVizov != null)
             {
-                ceh_name.Content += _sppp.MeetingID.ToString();
+                sppp_name.Content += _sppp.MeetingID.ToString();
                 date.Content += _sppp.Date.ToString("dd.MM.yyyy");
                 osnVizov.Content += _sppp.OsnVizov;
                 sotrud.Content += _sppp.Sotrudniki.ToString();

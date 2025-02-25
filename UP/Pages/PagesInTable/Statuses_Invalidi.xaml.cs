@@ -27,13 +27,17 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             invalid = _invalid;
-            if (_invalid.OrderNumber != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
+                student.Items.Add(cb_otdel);
                 prikaz.Text = _invalid.OrderNumber;
-                primech.Text = _invalid.StartDate.ToString();
-                vidInvalid.Text = _invalid.EndDate.ToString();
-                nachStat.Text = _invalid.DisabilityType;
-                konStat.Text = _invalid.Note;
+                primech.Text = _invalid.Note;
+                vidInvalid.Text = _invalid.DisabilityType;
+                nachStat.SelectedDate = _invalid.StartDate;
+                konStat.SelectedDate = _invalid.EndDate;
             }
         }
 
@@ -55,7 +59,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_Invalid Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{konStat.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
+                string query = $"Update Statuses_Invalid Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{vidInvalid.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

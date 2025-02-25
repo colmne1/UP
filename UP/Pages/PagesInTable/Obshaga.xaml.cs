@@ -37,6 +37,14 @@ namespace UP.Pages.PagesInTable
                 primech.Text = _obshaga.Note;
                 room.Items.Add(cb_room);
             }
+            foreach (var item in Connection.Students)
+            {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
+                student.Items.Add(cb_otdel);
+
+            }
         }
 
         private void Click_Obshaga_Redact(object sender, RoutedEventArgs e)
@@ -48,7 +56,7 @@ namespace UP.Pages.PagesInTable
             Id_room_temp = ClassConnection.Connection.Rooms.Find(x => x.RoomID == Convert.ToInt32(((ComboBoxItem)room.SelectedItem).Tag));
             if (obshaga.CheckInDate == null)
             {
-                string query = $"Insert Into Obshaga ([DormitoryID], [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{Id_room_temp.ToString()}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}')";
+                string query = $"Insert Into Obshaga ([DormitoryID], [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{Id_room_temp.RoomID.ToString()}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

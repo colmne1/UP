@@ -170,16 +170,16 @@ namespace ClassConnection
                         {
                             SPPP_Meetings meeting = new SPPP_Meetings
                             {
-                                MeetingID = Convert.ToInt32(reader.GetValue(1)),
-                                StudentID = Convert.ToInt32(reader.GetValue(2)),
-                                Date = Convert.ToDateTime(reader.GetValue(3)),
-                                OsnVizov = Convert.ToString(reader.GetValue(4)),
-                                Sotrudniki = Convert.ToString(reader.GetValue(5)),
-                                Predstaviteli = Convert.ToString(reader.GetValue(6)),
-                                ReasonForCall = Convert.ToString(reader.GetValue(7)),
-                                Reshenie = Convert.ToString(reader.GetValue(8)),
-                                Note = Convert.ToString(reader.GetValue(9)),
-                                Files = Convert.ToString(reader.GetValue(10))
+                                MeetingID = Convert.ToInt32(reader.GetValue(0)),
+                                StudentID = Convert.ToInt32(reader.GetValue(1)),
+                                Date = Convert.ToDateTime(reader.GetValue(2)),
+                                OsnVizov = Convert.ToString(reader.GetValue(3)),
+                                Sotrudniki = Convert.ToString(reader.GetValue(4)),
+                                Predstaviteli = Convert.ToString(reader.GetValue(5)),
+                                ReasonForCall = Convert.ToString(reader.GetValue(6)),
+                                Reshenie = Convert.ToString(reader.GetValue(7)),
+                                Note = Convert.ToString(reader.GetValue(8)),
+                                Files = Convert.ToString(reader.GetValue(9))
                             };
                             SpppMeetings.Add(meeting);
                         }

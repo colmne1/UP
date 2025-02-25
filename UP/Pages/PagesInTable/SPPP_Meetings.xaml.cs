@@ -27,8 +27,13 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             sppp = _sppp;
-            if (_sppp.OsnVizov != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
+                student.Items.Add(cb_otdel);
+
                 RentStart.Text = _sppp.Date.ToString();
                 osnVizov.Text = _sppp.OsnVizov;
                 sotrud.Text = _sppp.Sotrudniki;

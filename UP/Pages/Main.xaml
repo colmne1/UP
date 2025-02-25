@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="430*"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Grid.ColumnSpan="2" >
-                <StackPanel x:Name="list_move" Orientation="Horizontal">
+                <StackPanel x:Name="list_move" Orientation="Horizontal" Cursor="">
                     <Border x:Name="rooms_itms" Margin="5,3,10,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Rooms" Padding="7,7,7,7" Cursor="Hand">
                         <Grid Height="30">
                             <Image Source="/Images/rooms.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
@@ -71,7 +71,7 @@
                     <Border x:Name="Zavedenia_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Departments" Padding="7,7,7,7" Cursor="Hand">
                         <Grid Height="30">
                             <Image Source="/Images/uchzav.png" Margin="5,0,0,0" HorizontalAlignment="Left" Width="29" Height="30" VerticalAlignment="Top"/>
-                            <Label Content="Учебные заведения" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
+                            <Label Content="Отделения" Margin="44,0,0,0" Foreground="#FFFFFFFF" FontSize="15" FontFamily="Corbel" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Height="30"  VerticalAlignment="Top" FontWeight="Bold"/>
                         </Grid>
                     </Border>
                     <Border x:Name="Obshaga_itms" Margin="15,3,0,0" Height="45" CornerRadius="5,5,5,5" Style="{StaticResource Grid_Itm_Anim}" MouseDown="Click_Obshaga" Padding="7,7,7,7" Cursor="Hand">

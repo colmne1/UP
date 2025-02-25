@@ -33,7 +33,7 @@ namespace UP.Elements
                 prikaz.Content += _invalid.OrderNumber;
                 nachStat.Content += _invalid.StartDate.ToString("dd.MM.yyyy");
                 konStat.Content += _invalid.EndDate.ToString("dd.MM.yyyy");
-                vidInvalid.Content += _invalid.DisabilityType.ToString();
+                vidInvalid.Content += _invalid.DisabilityType;
                 primech.Content += _invalid.Note.ToString();
                 student.Content += Connection.Students.FirstOrDefault(x => x.StudentID == _invalid.StudentID).LastName + " " + Connection.Students.FirstOrDefault(x => x.StudentID == _invalid.StudentID).FirstName;
             }

@@ -27,8 +27,11 @@ namespace UP.Pages.PagesInTable
         {
             InitializeComponent();
             risk = _risk;
-            if (_risk.RiskGroupType != null)
+            foreach (var item in Connection.Students)
             {
+                ComboBoxItem cb_otdel = new ComboBoxItem();
+                cb_otdel.Tag = item.StudentID;
+                cb_otdel.Content = item.FirstName;
                 tip.Text = _risk.RiskGroupType;
                 nachUch.Text = _risk.DateStart.ToString();
                 konUch.Text = _risk.DateEnd.ToString();
@@ -37,6 +40,7 @@ namespace UP.Pages.PagesInTable
                 prichUch.Text = _risk.PrichinaPost;
                 prichSnUch.Text = _risk.PrichinaSnat;
                 primech.Text = _risk.Note;
+                student.Items.Add(cb_otdel);
             }
         }
 
@@ -47,7 +51,7 @@ namespace UP.Pages.PagesInTable
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_RiskGroup);
             if (risk.RiskGroupType == null)
             {
-                string query = $"Insert Into Statuses_RiskGroup ([RiskGroupID], [StudentID], [RiskGroupType], [DateStart], [DateEnd], [OsnPost], [OsnSnat], [PrichinaPost], [PrichinaSnat], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{tip.Text}', '{nachUch.Text}', '{konUch.Text}', '{osnUch.Text}', '{osnSnatUch.Text}', '{prichUch.Text}', '{prichSnUch.Text}')";
+                string query = $"Insert Into Statuses_RiskGroup ([RiskGroupID], [StudentID], [RiskGroupType], [DateStart], [DateEnd], [OsnPost], [OsnSnat], [PrichinaPost], [PrichinaSnat], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{tip.Text}', '{nachUch.Text}', '{konUch.Text}', '{osnUch.Text}', '{osnSnatUch.Text}', '{prichUch.Text}', '{prichSnUch.Text}', '{primech.Text}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -58,7 +62,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_RiskGroup Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
+                string query = $"Update Statuses_RiskGroup Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}', [Note] = N'{primech.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
