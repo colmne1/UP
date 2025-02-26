@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using UP.Classes;
 using UP.Pages.Login;
 
 namespace UP.Pages
@@ -668,17 +669,12 @@ namespace UP.Pages
 
         private void Click_Export(object sender, MouseButtonEventArgs e)
         {
-            //Search.IsEnabled = false;
-            //parrent.Children.Clear();
-            //page_select = page_main.none;
-            //var export = new ExportWindow();
-            //export.ShowDialog();
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "PDF (*.pdf)|*.pdf";
             sfd.ShowDialog();
             if(sfd.FileName != "")
             {
-                OwnerContext.ReportPDF(sfd.FileName);
+                Report.GenerateReport(sfd.FileName);
             }
         }
     }
