@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
+using System.Windows.Media;
 namespace UP.Classes
 {
 
@@ -169,6 +170,7 @@ namespace UP.Classes
             PdfPCell cell = new PdfPCell(new Phrase(text, font));
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             cell.VerticalAlignment = Element.ALIGN_MIDDLE; // Center text vertically
+            cell.BackgroundColor = iTextSharp.text.BaseColor.LIGHT_GRAY;
             table.AddCell(cell);
         }
 

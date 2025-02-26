@@ -183,6 +183,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Report.cs" />
+    <Compile Include="Classes\Report2.cs" />
+    <Compile Include="Classes\Report3.cs" />
     <Compile Include="Elements\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>
     </Compile>
