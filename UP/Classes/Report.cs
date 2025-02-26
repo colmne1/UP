@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using System.Windows.Media;
+using System.Data.SqlClient;
+using Microsoft.Win32;
+using System.Windows.Input;
 namespace UP.Classes
 {
 
@@ -25,49 +28,109 @@ namespace UP.Classes
             public string ObshezhitiePrimechanie { get; set; } // Общежитие (примечание)
             public string Otchislenie { get; set; } // Отчисление
         }
-        public static List<ReportData> GetData()
+        public static List<ReportData> GetData(string familiaFilter, DateTime? nachaloPerioda, DateTime? konecPerioda, string gruppaFilter)
         {
-            // Создайте экземпляр класса Connection
+            List<ReportData> reportData = new List<ReportData>();
+            List<Students> students = new List<Students>(); //Создаем список студентов
+
+            // Начните с базового запроса
+            string query = "SELECT * FROM Students WHERE 1=1";  // 1=1 для упрощения добавления условий
+
+            // Добавьте условия WHERE в зависимости от примененных фильтров
+            if (!string.IsNullOrEmpty(familiaFilter))
+            {
+                query += " AND LastName LIKE '%" + familiaFilter + "%'"; // Фильтр по фамилии
+            }
+
+            if (nachaloPerioda.HasValue)
+            {
+                query += " AND BirthDate >= '" + nachaloPerioda.Value.ToString("yyyy-MM-dd") + "'"; // Фильтр по дате начала периода
+            }
+
+            if (konecPerioda.HasValue)
+            {
+                query += " AND BirthDate <= '" + konecPerioda.Value.ToString("yyyy-MM-dd") + "'"; // Фильтр по дате конца периода
+            }
+            if (!string.IsNullOrEmpty(gruppaFilter))
+            {
+                query += " AND Groups LIKE '%" + gruppaFilter + "%'";
+            }
+            // Подключение к БД (Если еще не подключено)
+            if (!Connection.IsConnected)
+            {
+                Connection.Connect();
+            }
+            // Создаем экземпляр класса Connection
             Connection dbConnection = new Connection(); //Создаем экземпляр
 
-            // Подключитесь к базе данных и загрузите данные
-            Connection.Connect(); //Вызываем статический метод Connect.  Этот метод устанавливает IsConnected = true
-            dbConnection.LoadData(Connection.Tables.Obshaga); // Загрузите данные из таблицы Obshaga
-            dbConnection.LoadData(Connection.Tables.Students); // Загрузите данные из таблицы Students
-            dbConnection.LoadData(Connection.Tables.Rooms); // Загрузите данные из таблицы Rooms
+            // Выполнение запроса
+            SqlDataReader reader = dbConnection.ExecuteQuery(query);
 
-            // Создайте список для хранения данных отчета
-            List<ReportData> reportData = new List<ReportData>();
-
-            // Переберите данные Obshaga и заполните данные отчета
-            foreach (var obshaga in Connection.Obshagas)  //Статические свойства остаются статическими!
+            if (reader != null)
             {
-                // Найдите соответствующего студента
-                Students student = Connection.Students.FirstOrDefault(s => s.StudentID == obshaga.StudentID);
-                Rooms room = Connection.Rooms.FirstOrDefault(r => r.RoomID == obshaga.RoomNumber);
-
-                if (student != null)
+                while (reader.Read())
                 {
-                    reportData.Add(new ReportData
+                    Students student = new Students
                     {
-                        Komnata = (room != null) ? room.RoomName : "N/A", // номер комнаты
-                        FIO = $"{student.LastName}\n{student.FirstName}\n{student.MiddleName}",
-                        DataRozhdeniya = student.BirthDate.ToString("dd.MM.yyyy"),
-                        Gruppa = student.Groups,
-                        KontaktnyNomer = student.ContactNumber,
-                        KontaktyRoditeley = student.ParentsInfo, // Предполагая, что информация о родителях - это то, что вам нужно для контакта
-                        DataPervogoZaseleniya = obshaga.CheckInDate.ToString("dd.MM.yyyy"),
-                        ObshezhitiePrimechanie = obshaga.Note,
-                        Otchislenie = (obshaga.CheckOutDate != DateTime.MinValue) ? obshaga.CheckOutDate.ToString("dd.MM.yyyy") : ""
-                    });
+                        StudentID = Convert.ToInt32(reader.GetValue(0)),
+                        LastName = Convert.ToString(reader.GetValue(1)),
+                        FirstName = Convert.ToString(reader.GetValue(2)),
+                        MiddleName = Convert.ToString(reader.GetValue(3)),
+                        BirthDate = Convert.ToDateTime(reader.GetValue(4)),
+                        Gender = Convert.ToString(reader.GetValue(5)),
+                        ContactNumber = Convert.ToString(reader.GetValue(6)),
+                        Obrazovanie = Convert.ToString(reader.GetValue(7)),
+                        Otdelenie = Convert.ToInt32(reader.GetValue(8)),
+                        Groups = Convert.ToString(reader.GetValue(9)),
+                        Finance = Convert.ToString(reader.GetValue(10)),
+                        YearPostup = Convert.ToInt32(reader.GetValue(11)),
+                        YearOkonch = Convert.ToInt32(reader.GetValue(12)),
+                        InfoOtchiz = Convert.ToString(reader.GetValue(13)),
+                        DateOtchiz = Convert.ToDateTime(reader.GetValue(14)),
+                        Note = Convert.ToString(reader.GetValue(15)),
+                        ParentsInfo = Convert.ToString(reader.GetValue(16)),
+                        Vziskanie = Convert.ToString(reader.GetValue(17)),
+                        Files = Convert.ToString(reader.GetValue(18))
+                    };
+                    students.Add(student);
                 }
+            }
+            else
+            {
+                Console.WriteLine("Ошибка при выполнении запроса");
+            }
+
+            //Закрываем SqlDataReader
+            reader.Close();
+            //Выводим информацию в reportData
+            dbConnection.LoadData(Connection.Tables.Obshaga);
+            dbConnection.LoadData(Connection.Tables.Rooms);
+
+            foreach (Students student in students)
+            {
+                // Find the corresponding student
+                Obshaga obshaga = Connection.Obshagas.FirstOrDefault(s => s.StudentID == student.StudentID);
+                Rooms room = (obshaga != null) ? Connection.Rooms.FirstOrDefault(r => r.RoomID == obshaga.RoomNumber) : null;
+
+                reportData.Add(new ReportData
+                {
+                    Komnata = (room != null) ? room.RoomName : "N/A", // room number
+                    FIO = $"{student.LastName}\n{student.FirstName}\n{student.MiddleName}",
+                    DataRozhdeniya = student.BirthDate.ToString("dd.MM.yyyy"),
+                    Gruppa = student.Groups,
+                    KontaktnyNomer = student.ContactNumber,
+                    KontaktyRoditeley = student.ParentsInfo,  //Assuming parent info is what you want for parent contact
+                    DataPervogoZaseleniya = (obshaga != null) ? obshaga.CheckInDate.ToString("dd.MM.yyyy") : "",
+                    ObshezhitiePrimechanie = (obshaga != null) ? obshaga.Note : "",
+                    Otchislenie = (obshaga != null && obshaga.CheckOutDate != DateTime.MinValue) ? obshaga.CheckOutDate.ToString("dd.MM.yyyy") : ""
+                });
             }
 
             return reportData;
         }
 
 
-        public static void GenerateReport(string filePath)
+        public static void GenerateReport(string filePath, string familiaFilter, DateTime? nachaloPerioda, DateTime? konecPerioda, string gruppaFilter)
         {
             // 1. Create a Document object
             Document document = new Document(PageSize.A4);
@@ -94,7 +157,29 @@ namespace UP.Classes
                 header2.Alignment = Element.ALIGN_LEFT;
                 document.Add(header2);
 
-                Paragraph header3 = new Paragraph("Проживающие в общежитии/Фамилия: Ощепков/По алфавиту/на дату: 08.02.2025", bodyFont);
+                string filterString = $"Проживающие в общежитии";
+
+                if (!string.IsNullOrEmpty(familiaFilter))
+                {
+                    filterString += $"/Фамилия: {familiaFilter}";
+                }
+                else
+                {
+                    filterString += "/Фамилия: Все";
+                }
+                if (nachaloPerioda.HasValue && konecPerioda.HasValue)
+                {
+                    filterString += $"/Период: с {nachaloPerioda.Value.ToString("dd.MM.yyyy")} по {konecPerioda.Value.ToString("dd.MM.yyyy")}";
+                }
+
+                if (!string.IsNullOrEmpty(gruppaFilter))
+                {
+                    filterString += $"/Группа: {gruppaFilter}";
+                }
+
+                filterString += "/По алфавиту/на дату: " + DateTime.Now.ToString("dd.MM.yyyy");
+
+                Paragraph header3 = new Paragraph(filterString, bodyFont);
                 header3.Alignment = Element.ALIGN_LEFT;
                 document.Add(header3);
 
@@ -120,7 +205,7 @@ namespace UP.Classes
                 AddTableHeaderCell(table, "Общежитие\n(примечание)", headerFont);
 
                 // 5. Fetch your data (replace this with your actual data source)
-                List<ReportData> reportData = GetData();
+                List<ReportData> reportData = GetData(familiaFilter, nachaloPerioda, konecPerioda, gruppaFilter); // Передаем параметры фильтров
 
                 // 6. Add data rows to the table
                 foreach (var rowData in reportData)
@@ -182,5 +267,19 @@ namespace UP.Classes
             cell.VerticalAlignment = Element.ALIGN_MIDDLE; // Center text vertically
             table.AddCell(cell);
         }
+        //private void Click_Export(object sender, MouseButtonEventArgs e)
+        //{
+        //    SaveFileDialog sfd = new SaveFileDialog();
+        //    sfd.Filter = "PDF (*.pdf)|*.pdf";
+        //    if (sfd.ShowDialog() == true)
+        //    {
+        //        string familiaFilter = textBoxFamilia.Text;
+        //        DateTime? nachaloPerioda = dateTimePickerNachalo.Value; //DateTime? потому что DateTime может быть null
+        //        DateTime? konecPerioda = dateTimePickerKonec.Value; //DateTime? потому что DateTime может быть null
+        //        string gruppaFilter = textBoxGruppa.Text;
+
+        //        Report.GenerateReport(sfd.FileName, familiaFilter, nachaloPerioda, konecPerioda, gruppaFilter);
+        //    }
+        //}
     }
 }
