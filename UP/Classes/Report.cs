@@ -267,19 +267,5 @@ namespace UP.Classes
             cell.VerticalAlignment = Element.ALIGN_MIDDLE; // Center text vertically
             table.AddCell(cell);
         }
-        //private void Click_Export(object sender, MouseButtonEventArgs e)
-        //{
-        //    SaveFileDialog sfd = new SaveFileDialog();
-        //    sfd.Filter = "PDF (*.pdf)|*.pdf";
-        //    if (sfd.ShowDialog() == true)
-        //    {
-        //        string familiaFilter = textBoxFamilia.Text;
-        //        DateTime? nachaloPerioda = dateTimePickerNachalo.Value; //DateTime? потому что DateTime может быть null
-        //        DateTime? konecPerioda = dateTimePickerKonec.Value; //DateTime? потому что DateTime может быть null
-        //        string gruppaFilter = textBoxGruppa.Text;
-
-        //        Report.GenerateReport(sfd.FileName, familiaFilter, nachaloPerioda, konecPerioda, gruppaFilter);
-        //    }
-        //}
     }
 }

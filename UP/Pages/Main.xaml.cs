@@ -669,13 +669,8 @@ namespace UP.Pages
 
         private void Click_Export(object sender, MouseButtonEventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "PDF (*.pdf)|*.pdf";
-            sfd.ShowDialog();
-            if(sfd.FileName != "")
-            {
-                Report.GenerateReport(sfd.FileName);
-            }
+            var export = new ExpWindow();
+            export.ShowDialog();
         }
     }
 }
