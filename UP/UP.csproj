@@ -250,6 +250,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\FilterStudentsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -310,6 +314,9 @@
   <ItemGroup>
     <Compile Include="Pages\ExpWindow.xaml.cs">
       <DependentUpon>ExpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FilterStudentsWindow.xaml.cs">
+      <DependentUpon>FilterStudentsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>

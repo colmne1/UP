@@ -1,0 +1,163 @@
+﻿<Window x:Class="UP.Pages.FilterStudentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UP.Pages"
+        mc:Ignorable="d"
+        Title="Фильтр студентов" Height="600" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#f0f0f0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Hostel -->
+        <Label Content="Общежитие" Grid.Row="0" Margin="10,10,0,0"/>
+        <ComboBox x:Name="HostelComboBox" Grid.Row="1" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Orphans -->
+        <Label Content="Сироты" Grid.Row="2" Margin="10,10,0,0"/>
+        <ComboBox x:Name="OrphansComboBox" Grid.Row="3" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Все"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- SPPP Checkbox -->
+        <CheckBox Content="СППП" Grid.Row="4" Margin="10,10,0,10" x:Name="SPPPCheckBox"/>
+
+        <!-- Disability -->
+        <Label Content="Инвалиды" Grid.Row="5" Margin="10,10,0,0"/>
+        <ComboBox x:Name="DisabilityComboBox" Grid.Row="6" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Social Scholarship -->
+        <Label Content="Социальная степендия" Grid.Row="7" Margin="10,10,0,0"/>
+        <ComboBox x:Name="SocialScholarshipComboBox" Grid.Row="8" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- COP -->
+        <Label Content="СОП" Grid.Row="9" Margin="10,10,0,0"/>
+        <ComboBox x:Name="COPComboBox" Grid.Row="10" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Risk Group -->
+        <Label Content="Группа риска" Grid.Row="11" Margin="10,10,0,0"/>
+        <ComboBox x:Name="RiskGroupComboBox" Grid.Row="12" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Surname -->
+        <Label Content="Фамилия" Grid.Row="13" Margin="10,10,0,0"/>
+        <TextBox x:Name="SurnameTextBox" Grid.Row="14" Margin="10,0,10,10"/>
+
+        <!-- Majority -->
+        <Label Content="Совершеннолетие" Grid.Row="15" Margin="10,10,0,0"/>
+        <ComboBox x:Name="MajorityComboBox" Grid.Row="16" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Group -->
+        <Label Content="Группа" Grid.Row="17" Margin="10,10,0,0"/>
+        <TextBox x:Name="GroupTextBox" Grid.Row="18" Margin="10,0,10,10"/>
+
+        <!-- Vziskanie Checkbox -->
+        <CheckBox Content="Взыскания" Grid.Row="19" Margin="10,10,0,10" x:Name="VziskanieCheckBox"/>
+
+        <!-- OVZ -->
+        <Label Content="ОВЗ" Grid.Row="20" Margin="10,10,0,0"/>
+        <ComboBox x:Name="OVZComboBox" Grid.Row="21" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Да"/>
+            <ComboBoxItem Content="Нет"/>
+        </ComboBox>
+
+        <!-- Date Of Date -->
+        <Label Content="На дату" Grid.Row="22" Margin="10,10,0,0"/>
+        <DatePicker x:Name="DateDatePicker" Grid.Row="23" Margin="10,0,10,10"/>
+
+        <!-- Uchaschiesa -->
+        <Label Content="Учащиеся/Отчисленные" Grid.Row="24" Margin="10,10,0,0"/>
+        <ComboBox x:Name="UchaschiesaComboBox" Grid.Row="25" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Учащиеся"/>
+            <ComboBoxItem Content="Отчисленные"/>
+        </ComboBox>
+
+        <!-- Otdelenie -->
+        <Label Content="Отделение" Grid.Row="26" Margin="10,10,0,0"/>
+        <ComboBox x:Name="OtdelenieComboBox" Grid.Row="27" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+        </ComboBox>
+
+        <!-- Komnata -->
+        <Label Content="Комната" Grid.Row="28" Margin="10,10,0,0"/>
+        <ComboBox x:Name="KomnataComboBox" Grid.Row="29" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+
+        </ComboBox>
+
+        <!-- Pol -->
+        <Label Content="Пол" Grid.Row="30" Margin="10,10,0,0"/>
+        <ComboBox x:Name="PolComboBox" Grid.Row="31" Margin="10,0,10,10" SelectedIndex="0">
+            <ComboBoxItem Content="Не выбрано"/>
+            <ComboBoxItem Content="Мужской"/>
+            <ComboBoxItem Content="Женский"/>
+
+        </ComboBox>
+
+
+        <StackPanel Grid.Row="32" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
+            <Button Content="Применить" Width="100" Margin="0,0,10,0" Click="ApplyFilters_Click"/>
+            <Button Content="Сбросить" Width="100" Click="ResetFilters_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

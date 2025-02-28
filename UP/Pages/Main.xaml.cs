@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using UP.Classes;
 using UP.Pages.Login;
+using UP.Pages.PagesInTable;
 
 namespace UP.Pages
 {
@@ -45,6 +46,7 @@ namespace UP.Pages
             InitializeComponent();
             main = this;
             page_select = page_main.none;
+            LoadInitialStudentData();
         }
         public void CreateConnect(bool connectApply)
         {
@@ -671,6 +673,63 @@ namespace UP.Pages
         {
             var export = new ExpWindow();
             export.ShowDialog();
+        }
+        private List<Students> currentStudentList;
+        private void LoadInitialStudentData()
+        {
+            // Load all student data and display it
+            ClassConnection.Connection connection = new ClassConnection.Connection();
+            connection.Connect();
+            connection.LoadData(ClassConnection.Connection.Tables.Students);
+            List<ClassModules.Students> allStudents = ClassConnection.Connection.Students.ToList();
+
+            // Set initial student list
+            UpdateStudentList(allStudents);
+        }
+
+        private void OpenFilterWindow(object sender, RoutedEventArgs e)
+        {
+            // 1. Get all students for the filter window:
+            ClassConnection.Connection connection = new ClassConnection.Connection(); // Access to methods and functions
+            connection.Connect(); // Connect to the database
+
+            // 2. Load all student data from the connection
+            connection.LoadData(ClassConnection.Connection.Tables.Students);
+            List<ClassModules.Students> allStudents = ClassConnection.Connection.Students.ToList();
+
+            // 3. Create the filter window:
+            FilterStudentsWindow filterWindow = new FilterStudentsWindow(allStudents);
+
+            // 4. Show the filter window as a dialog:
+            if (filterWindow.ShowDialog() == true)
+            {
+                // 5. Get the filtered student list from the filter window:
+                List<ClassModules.Students> filteredList = filterWindow.FilteredStudents;
+                // 6. Update student list
+                UpdateStudentList(filteredList);
+            }
+            else
+            {
+                // 6. Cancelled
+                UpdateStudentList(currentStudentList);
+            }
+
+            connection.Connect(); // Connect to the database
+        }
+
+        // 1. Creating and saving student data:
+        private void SaveStudents(List<ClassModules.Students> newList)
+        {
+            // Save data as the current one
+            this.currentStudentList = newList;
+        }
+
+        private void UpdateStudentList(List<ClassModules.Students> students)
+        {
+            // Assuming your student list is displayed in a DataGrid called "StudentDataGrid"
+            StudentDataGrid.ItemsSource = students; // Refresh the display
+            //Saves the student
+            SaveStudents(students);
         }
     }
 }
