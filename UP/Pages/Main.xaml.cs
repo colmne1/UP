@@ -45,6 +45,7 @@ namespace UP.Pages
             InitializeComponent();
             main = this;
             page_select = page_main.none;
+            FilterDateDatePicker.SelectedDate = DateTime.Today;
         }
         public void CreateConnect(bool connectApply)
         {
@@ -110,10 +111,10 @@ namespace UP.Pages
         private void Click_Rooms(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-                Search.IsEnabled = true;
                 page_select = page_main.Rooms;
                 parrent.Children.Clear();
                 LoadRooms();
+            ApplyFilter();
 
         }
 
@@ -139,10 +140,10 @@ namespace UP.Pages
         private void Click_SocialScholarships(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.SocialScholarships;
             parrent.Children.Clear();
             LoadSocialScholarships();
+            ApplyFilter();
         }
 
         private void LoadStatuses_RiskGroup()
@@ -167,10 +168,10 @@ namespace UP.Pages
         private void Click_Statuses_RiskGroup(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Statuses_RiskGroup;
             parrent.Children.Clear();
             LoadStatuses_RiskGroup();
+            ApplyFilter();
         }
 
         private void LoadStatuses_Invalid()
@@ -195,10 +196,10 @@ namespace UP.Pages
         private void Click_Statuses_Invalid(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Statuses_Invalid;
             parrent.Children.Clear();
             LoadStatuses_Invalid();
+            ApplyFilter();
         }
 
         private void LoadSPPP_Meetings()
@@ -223,10 +224,10 @@ namespace UP.Pages
         private void Click_SPPP_Meetings(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.SPPP_Meetings;
             parrent.Children.Clear();
             LoadSPPP_Meetings();
+            ApplyFilter();
         }
         private void LoadStudents()
         {
@@ -250,7 +251,6 @@ namespace UP.Pages
         private void Click_Students(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             if (page_select != page_main.Students)
             {
                 page_select = page_main.Students;
@@ -268,6 +268,7 @@ namespace UP.Pages
                     opgriAnimation.Completed += delegate
                     {
                         LoadStudents();
+                        ApplyFilter();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
                 };
@@ -296,10 +297,10 @@ namespace UP.Pages
         private void Click_Departments(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Departments;
             parrent.Children.Clear();
             LoadDepartments();
+            ApplyFilter();
         }
 
         private void LoadObshaga()
@@ -324,10 +325,10 @@ namespace UP.Pages
         private void Click_Obshaga(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Obshaga;
             parrent.Children.Clear();
             LoadObshaga();
+            ApplyFilter();
         }
 
         private void LoadStatuses_OVZ()
@@ -352,10 +353,10 @@ namespace UP.Pages
         private void Click_Statuses_OVZ(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Statuses_OVZ;
             parrent.Children.Clear();
             LoadStatuses_OVZ();
+            ApplyFilter();
         }
 
         private void LoadStatuses_SVO()
@@ -380,10 +381,10 @@ namespace UP.Pages
         private void Click_Statuses_SVO(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Statuses_SVO;
             parrent.Children.Clear();
             LoadStatuses_SVO();
+            ApplyFilter();
         }
 
         private void LoadStatuses_Sirots()
@@ -408,165 +409,15 @@ namespace UP.Pages
         private void Click_Statuses_Sirots(object sender, RoutedEventArgs e)
         {
             if (frame_main.Visibility == Visibility.Visible) MainWindow.main.Animation_move(MainWindow.main.frame_main, MainWindow.main.scroll_main);
-            Search.IsEnabled = true;
             page_select = page_main.Statuses_Sirots;
             parrent.Children.Clear();
             LoadStatuses_Sirots();
+            ApplyFilter();
         }
         private bool isDataLoaded = false;
-        private async void SearchTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(Search.Text) && Search.Text != "Поиск")
-            {
-                await Task.Delay(100);
-                if (page_select == page_main.Rooms)
-                {
-                    parrent.Children.Clear();
-                    var rooms = Connection.Rooms.FindAll(x => x.RoomID.ToString() == Search.Text);
-                    foreach (var itemSearch in rooms) parrent.Children.Add(new Elements.Rooms_items(itemSearch));
-                }
-                else if (page_select == page_main.SocialScholarships)
-                {
-                    parrent.Children.Clear();
-                    var country = Connection.SocialScholarships.FindAll(x => x.DocumentReason.Contains(Search.Text));
-                    var countryIds = country.Select(c => c.ScholarshipID).ToList();
-                    var locationsByCountry = Connection.SocialScholarships.Where(l => countryIds.Contains(l.ScholarshipID)).ToList();
-                    foreach (var itemSearch in locationsByCountry) parrent.Children.Add(new Elements.SocialScholarships_items(itemSearch));
-                }
-                else if (page_select == page_main.Statuses_RiskGroup)
-                {
-                    parrent.Children.Clear();
-                    var VoditelById = Connection.StatusesRiskGroups.FindAll(x => x.RiskGroupID.ToString().Contains(Search.Text));
-                    foreach (var itemSearch in VoditelById) parrent.Children.Add(new Elements.Statuses_RiskGroup_items(itemSearch));
-                }
-                else if (page_select == page_main.Statuses_Invalid)
-                {
-                    parrent.Children.Clear();
-                    var techniqueByName = Connection.StatusesInvalids.FindAll(x => x.DisabilityType.Contains(Search.Text));
-                    foreach (var itemSearch in techniqueByName) parrent.Children.Add(new Elements.Statuses_Invalid_items(itemSearch));
-                }
-                else if (page_select == page_main.SPPP_Meetings)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.SpppMeetings.FindAll(x => x.OsnVizov.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.SPPP_Meetings_items(itemSearch));
-                }
-                else if (page_select == page_main.Students)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Students.FindAll(x => x.LastName.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Students_items(itemSearch));
-                }
-                else if (page_select == page_main.Departments)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Departments.FindAll(x => x.DepartmentName.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Departments_items(itemSearch));
-                }
-                else if (page_select == page_main.Obshaga)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.Obshagas.FindAll(x => x.Note.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Obshaga_items(itemSearch));
-                }
-                else if (page_select == page_main.Statuses_OVZ)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesOvzs.FindAll(x => x.Prikaz.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_OVZ_items(itemSearch));
-                }
-                else if (page_select == page_main.Statuses_SVO)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesSvos.FindAll(x => x.DocumentOsnov.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_SVO_items(itemSearch));
-                }
-                else if (page_select == page_main.Statuses_Sirots)
-                {
-                    parrent.Children.Clear();
-                    var typeOfTroopByName = Connection.StatusesSirots.FindAll(x => x.OrderNumber.Contains(Search.Text));
-                    foreach (var itemSearch in typeOfTroopByName) parrent.Children.Add(new Elements.Statuses_Sirots_items(itemSearch));
-                }
-
-            }
-            else
-            {
-                await Task.Delay(100);
-                if (string.IsNullOrWhiteSpace(Search.Text))
-                {
-                    parrent.Children.Clear();
-                    return;
-                }
-                if (!isDataLoaded || Search.Text == "Поиск")
-                {
-                    if (page_select == page_main.Rooms)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadRooms();
-                    }
-                    else if (page_select == page_main.SocialScholarships)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadSocialScholarships();
-                    }
-                    else if (page_select == page_main.Statuses_RiskGroup)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStatuses_RiskGroup();
-                    }
-                    else if (page_select == page_main.Statuses_Invalid)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStatuses_Invalid();
-                    }
-                    else if (page_select == page_main.SPPP_Meetings)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadSPPP_Meetings();
-                    }
-                    else if (page_select == page_main.Students)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStudents();
-                    }
-                    else if (page_select == page_main.Departments)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadDepartments();
-                    }
-                    else if (page_select == page_main.Obshaga)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadObshaga();
-                    }
-                    else if (page_select == page_main.Statuses_OVZ)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStatuses_OVZ();
-                    }
-                    else if (page_select == page_main.Statuses_SVO)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStatuses_SVO();
-                    }
-                    else if (page_select == page_main.Statuses_Sirots)
-                    {
-                        if (parrent != null) parrent.Children.Clear();
-                        LoadStatuses_Sirots();
-                    }
-                   
-                    isDataLoaded = true;
-                }
-            }
-        }
-
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e) => Search.Text = "Поиск";
-
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e) => Search.Text = "";
 
         private void Click_Back(object sender, RoutedEventArgs e)
         {
-            Search.IsEnabled = false;
             rooms_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             SocialScholarships_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
             GroupRisk_itms.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF2C2C2C"));
@@ -672,5 +523,85 @@ namespace UP.Pages
             var export = new ExpWindow();
             export.ShowDialog();
         }
+        private void ApplyFilter()
+        {
+            if (page_select != page_main.Students)
+            {
+                filterpanel.Visibility = Visibility.Hidden;
+                return;
+            }
+            else
+            {
+                filterpanel.Visibility = Visibility.Visible;
+                parrent.Children.Clear(); // Очищаем текущий список
+
+                // 1. Получаем базовый набор студентов (все)
+                IEnumerable<ClassModules.Students> filteredStudents = ClassConnection.Connection.Students;
+
+                // 2. Применяем фильтры (как в предыдущем примере)
+                DateTime filterDate = FilterDateDatePicker.SelectedDate ?? DateTime.Today;
+                string lastNameFilter = FilterLastNameTextBox.Text?.Trim();
+                string groupFilter = FilterGroupTextBox.Text?.Trim();
+                // Добавьте остальные переменные фильтров из UI
+
+                // Пример фильтрации по фамилии и группе
+                if (!string.IsNullOrEmpty(lastNameFilter))
+                {
+                    filteredStudents = filteredStudents.Where(s => s.LastName.ToLower().Contains(lastNameFilter.ToLower()));
+                }
+
+                if (!string.IsNullOrEmpty(groupFilter))
+                {
+                    filteredStudents = filteredStudents.Where(s => s.Groups.ToLower().Contains(groupFilter.ToLower()));
+                }
+                if (FilterSPPPCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.SpppMeetings.Any(sp => sp.StudentID == s.StudentID));
+                }
+                // Пол
+                string genderFilter = (FilterGenderComboBox.SelectedItem as ComboBoxItem)?.Content as string;
+                if (genderFilter == "Мужской")
+                {
+                    filteredStudents = filteredStudents.Where(s => s.Gender == "Female");
+                }
+                else if (genderFilter == "Женский")
+                {
+                    filteredStudents = filteredStudents.Where(s => s.Gender == "Male");
+                }
+                // Добавьте остальные фильтры на основе значений из UI
+
+                // 3. Отображаем отфильтрованные данные
+                Dispatcher.InvokeAsync(async () =>
+                {
+                    foreach (var student in filteredStudents)
+                    {
+                        if (page_select == page_main.Students)
+                        {
+                            parrent.Children.Add(new Elements.Students_items(student)); // Используйте ваш метод для отображения студента
+                        await Task.Delay(90);
+                        }
+                    }
+
+                    if (page_select == page_main.Students && Login.Login.UserInfo[1] == "admin")
+                    {
+                        var add = new Pages.PagesInTable.Students(new ClassModules.Students());
+                        parrent.Children.Add(new Elements.Add(add));
+                    }
+
+                });
+            }
+        }
+
+        // Обработчики событий
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void Filter_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            ApplyFilter();
+        }
+
     }
 }

@@ -335,13 +335,11 @@ namespace ClassConnection
                 Console.WriteLine(ex.Message);
             }
         }
-
-        //Generic function for getting new id
         public int SetLastId(Tables table)
         {
             try
             {
-                LoadData(table); // Ensure data is loaded
+                LoadData(table);
 
                 switch (table)
                 {
