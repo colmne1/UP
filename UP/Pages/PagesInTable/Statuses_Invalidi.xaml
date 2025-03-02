@@ -29,13 +29,11 @@
                         <Label Content="Вид инвалидности" Margin="39,480,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="vidInvalid" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,525,193,0" VerticalAlignment="Top"/>
                         <Label Content="Дата начала статуса" Margin="40,260,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
-                        <DatePicker  Style="{StaticResource styleDatepicker}" x:Name="nachStat" Text="Наименование"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data">
-                            <DatePicker.BlackoutDates>
-                                <CalendarDateRange End="01/01/2000 23:59:59" Start="01/01/2030 23:59:59"/>
-                            </DatePicker.BlackoutDates>
-                        </DatePicker>
+                        <DatePicker  Style="{StaticResource styleDatepicker}" x:Name="nachStat" Text="Наименование"  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,294,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data"/>
                         <Label Content="Дата конца статуса" Margin="40,324,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <DatePicker Style="{StaticResource styleDatepicker}" x:Name="konStat" Text="Наименование" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,358,0,0" RenderTransformOrigin="0.783,1.923" Height="28" Width="138" PreviewTextInput="TextBox_Data"/>
+                        <TextBox x:Name="FilePathTextBox" IsReadOnly="True" Margin="39,591,193,121"/>
+                        <Button Content="Выбрать файл" Click="SelectFileButton_Click" Margin="651,591,193,121"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Statuses_Invalidi_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

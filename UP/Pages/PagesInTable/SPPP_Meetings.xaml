@@ -42,6 +42,8 @@
                         <TextBox x:Name="resh" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,569,193,0" VerticalAlignment="Top"/>
                         <Label Content="Примечание" Margin="40,609,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="primech" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,643,193,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="FilePathTextBox" IsReadOnly="True" Margin="38,712,194,137"/>
+                        <Button Content="Выбрать файл" Click="SelectFileButton_Click" Margin="650,712,195,137"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_SPPP_Meetings_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

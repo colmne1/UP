@@ -18,6 +18,6 @@ namespace ClassModules
         public string PrichinaPost { get; set; }
         public string PrichinaSnat { get; set; }
         public string Note { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

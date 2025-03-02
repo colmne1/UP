@@ -14,6 +14,6 @@ namespace ClassModules
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
         public string Note { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

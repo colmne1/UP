@@ -26,6 +26,6 @@ namespace ClassModules
         public string Note { get; set; }
         public string ParentsInfo { get; set; }
         public string Vziskanie { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

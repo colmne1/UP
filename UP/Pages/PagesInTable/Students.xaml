@@ -18,7 +18,7 @@
             </Grid.Resources>
             <ScrollViewer>
                 <Border>
-                    <Grid Height="1462">
+                    <Grid Height="1586">
                         <Label Content="Студенты" Margin="39,28,26,0" Foreground="White" FontSize="30" FontFamily="Yu Gothic UI Semibold" HorizontalContentAlignment="Left" Height="52" VerticalAlignment="Top"/>
                         <Label Content="Фамилия" Margin="40,166,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="Family" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,200,193,0" VerticalAlignment="Top" LostFocus="TextBox_LostFocus_1" GotFocus="TextBox_GotFocus_1" PreviewTextInput="TextBox_PreviewTextInput_1"/>
@@ -60,6 +60,8 @@
                         <TextBox x:Name="svORodit" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,1289,193,0" VerticalAlignment="Top"/>
                         <Label Content="Взыскание" Margin="40,1329,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="vziskanie" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,1363,193,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="FilePathTextBox" IsReadOnly="True" Margin="40,1436,194,116"/>
+                        <Button Content="Выбрать файл" Click="SelectFileButton_Click" Margin="651,1436,193,116"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Students_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

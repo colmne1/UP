@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -40,15 +42,31 @@ namespace UP.Pages.PagesInTable
                 konStat.SelectedDate = _invalid.EndDate;
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_Statuses_Invalidi_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Students Id_student_temp;
             Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_Invalid);
             if (invalid.OrderNumber == null)
             {
-                string query = $"Insert Into Statuses_Invalid ([DisabilityStatusID], [StudentID], [OrderNumber], [StartDate], [EndDate], [DisabilityType], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}', '{vidInvalid.Text}', '{primech.Text}')";
+                string query = $"Insert Into Statuses_Invalid ([DisabilityStatusID], [StudentID], [OrderNumber], [StartDate], [EndDate], [DisabilityType], [Note], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}', '{vidInvalid.Text}', '{primech.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -59,7 +77,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_Invalid Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{vidInvalid.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {invalid.DisabilityStatusID}";
+                string query = $"Update Statuses_Invalid Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [OrderNumber] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [DisabilityType] = N'{vidInvalid.Text}', [Note] = N'{primech.Text}', [Files] = '{fileContent}' Where [MeetingID] = {invalid.DisabilityStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

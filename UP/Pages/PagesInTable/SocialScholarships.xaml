@@ -28,6 +28,8 @@
                         <DatePicker Style="{StaticResource styleDatepicker}" x:Name="nachVipl" Height="28" Background="#FFDEDEDE" Margin="40,310,748,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data" Foreground="Black"/>
                         <Label Content="Конец выплаты " Margin="39,355,26,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <DatePicker Style="{StaticResource styleDatepicker}" x:Name="konVipl" Height="28" Background="#FFDEDEDE" Margin="40,400,748,0" VerticalAlignment="Top" PreviewTextInput="TextBox_Data"/>
+                        <TextBox x:Name="FilePathTextBox" IsReadOnly="True" Margin="39,458,193,254"/>
+                        <Button Content="Выбрать файл" Click="SelectFileButton_Click" Margin="651,458,193,254"/>
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_SocialScholarships_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
                         </Button>

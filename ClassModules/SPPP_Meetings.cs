@@ -17,6 +17,6 @@ namespace ClassModules
         public string ReasonForCall { get; set; }
         public string Reshenie { get; set; }
         public string Note { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

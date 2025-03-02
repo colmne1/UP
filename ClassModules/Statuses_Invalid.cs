@@ -15,6 +15,6 @@ namespace ClassModules
         public DateTime EndDate { get; set; }
         public string DisabilityType { get; set; }
         public string Note { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

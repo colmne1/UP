@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -43,15 +45,31 @@ namespace UP.Pages.PagesInTable
                 student.Items.Add(cb_otdel);
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_Statuses_RiskGroup_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Students Id_student_temp;
             Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_RiskGroup);
             if (risk.RiskGroupType == null)
             {
-                string query = $"Insert Into Statuses_RiskGroup ([RiskGroupID], [StudentID], [RiskGroupType], [DateStart], [DateEnd], [OsnPost], [OsnSnat], [PrichinaPost], [PrichinaSnat], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{tip.Text}', '{nachUch.Text}', '{konUch.Text}', '{osnUch.Text}', '{osnSnatUch.Text}', '{prichUch.Text}', '{prichSnUch.Text}', '{primech.Text}')";
+                string query = $"Insert Into Statuses_RiskGroup ([RiskGroupID], [StudentID], [RiskGroupType], [DateStart], [DateEnd], [OsnPost], [OsnSnat], [PrichinaPost], [PrichinaSnat], [Note], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{tip.Text}', '{nachUch.Text}', '{konUch.Text}', '{osnUch.Text}', '{osnSnatUch.Text}', '{prichUch.Text}', '{prichSnUch.Text}', '{primech.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -62,7 +80,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_RiskGroup Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}', [Note] = N'{primech.Text}' Where [RiskGroupID] = {risk.RiskGroupID}";
+                string query = $"Update Statuses_RiskGroup Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [RiskGroupType] = N'{tip.Text}', [DateStart] = N'{nachUch.Text}', [DateEnd] = N'{konUch.Text}', [OsnPost] = N'{osnUch.Text}', [OsnSnat] = N'{osnSnatUch.Text}', [PrichinaPost] = N'{prichUch.Text}', [PrichinaSnat] = N'{prichSnUch.Text}', [Note] = N'{primech.Text}', [Files] = '{fileContent}' Where [RiskGroupID] = {risk.RiskGroupID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -51,9 +53,25 @@ namespace UP.Pages.PagesInTable
                 otdel.Items.Add(cb_otdel);
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_Students_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Departments Id_departments_temp;
             Id_departments_temp = ClassConnection.Connection.Departments.Find(x => x.DepartmentID == Convert.ToInt32(((ComboBoxItem)otdel.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Students);
@@ -64,7 +82,7 @@ namespace UP.Pages.PagesInTable
 
                 if (students.LastName == null)
                 {
-                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOtchiz], [Note], [ParentsInfo], [Vziskanie], [Files]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{obraz.Text}', '{Id_departments_temp.DepartmentID.ToString()}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}', NULL)";
+                    string query = $"Insert Into Students ([StudentID], [LastName], [FirstName], [MiddleName], [BirthDate], [Gender], [ContactNumber], [Obrazovanie], [Otdelenie], [Groups], [Finance], [YearPostup], [YearOkonch], [InfoOtchiz], [DateOtchiz], [Note], [ParentsInfo], [Vziskanie], [Files]) Values({id.ToString()}, '{Family.Text}', '{Name.Text}', '{octh.Text}', '{dateBrth.Text}', '{pol.Text}', '{kontNomer.Text}', '{obraz.Text}', '{Id_departments_temp.DepartmentID.ToString()}', '{group.Text}', '{finance.Text}', '{godPostup.Text}', '{godOkonch.Text}', '{infoOtchis.Text}', '{dateOtchiz.Text}', '{primech.Text}', '{svORodit.Text}', '{vziskanie.Text}', '{fileContent}')";
                     var query_apply = Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {
@@ -75,7 +93,7 @@ namespace UP.Pages.PagesInTable
                 }
                 else
                 {
-                    string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{Id_departments_temp.DepartmentID.ToString()}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOtchiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}' Where [StudentID] = {students.StudentID}";
+                    string query = $"Update Students Set [LastName] = '{Family.Text}', [FirstName] = '{Name.Text}', [MiddleName] = '{octh.Text}', [BirthDate] = '{dateBrth.Text}', [Gender] = '{pol.Text}', [ContactNumber] = '{kontNomer.Text}', [Obrazovanie] = '{obraz.Text}', [Otdelenie] = '{Id_departments_temp.DepartmentID.ToString()}', [Groups] = '{group.Text}', [Finance] = '{finance.Text}', [YearPostup] = '{godPostup.Text}', [YearOkonch] = '{godOkonch.Text}', [InfoOtchiz] = '{infoOtchis.Text}', [DateOtchiz] = '{dateOtchiz.Text}', [Note] = '{primech.Text}', [ParentsInfo] = '{svORodit.Text}', [Vziskanie] = '{vziskanie.Text}', [Files] = '{fileContent}' Where [StudentID] = {students.StudentID}";
                     var query_apply = Login.Login.connection.ExecuteQuery(query);
                     if (query_apply != null)
                     {

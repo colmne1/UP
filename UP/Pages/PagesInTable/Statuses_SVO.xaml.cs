@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -38,14 +40,32 @@ namespace UP.Pages.PagesInTable
                 student.Items.Add(cb_otdel);
             }
         }
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
+
         private void Click_Statuses_SVO_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Students Id_student_temp;
             Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Statuses_Sirots);
             if (svo.DocumentOsnov == null)
             {
-                string query = $"Insert Into Statuses_SVO ([SVOStatusID], [StudentID], [DocumentOsnov], [StartDate], [EndDate]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}')";
+                string query = $"Insert Into Statuses_SVO ([SVOStatusID], [StudentID], [DocumentOsnov], [StartDate], [EndDate], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{prikaz.Text}', '{nachStat.Text}', '{konStat.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -56,7 +76,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Statuses_SVO Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentOsnov] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}' Where [SVOStatusID] = {svo.SVOStatusID}";
+                string query = $"Update Statuses_SVO Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentOsnov] = N'{prikaz.Text}', [StartDate] = N'{nachStat.Text}', [EndDate] = N'{konStat.Text}', [Files] = '{fileContent}' Where [SVOStatusID] = {svo.SVOStatusID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

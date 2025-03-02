@@ -13,6 +13,6 @@ namespace ClassModules
         public string DocumentReason { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public string Files { get; set; }
+        public byte[] Files { get; set; }
     }
 }

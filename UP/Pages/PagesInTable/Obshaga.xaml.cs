@@ -1,6 +1,8 @@
 ﻿using ClassConnection;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -46,9 +48,35 @@ namespace UP.Pages.PagesInTable
 
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_Obshaga_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            byte[] fileData;
+            try
+            {
+                fileData = File.ReadAllBytes(selectedFilePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Departments);
             ClassModules.Students Id_student_temp;
             ClassModules.Rooms Id_room_temp;
@@ -56,7 +84,7 @@ namespace UP.Pages.PagesInTable
             Id_room_temp = ClassConnection.Connection.Rooms.Find(x => x.RoomID == Convert.ToInt32(((ComboBoxItem)room.SelectedItem).Tag));
             if (obshaga.CheckInDate == null)
             {
-                string query = $"Insert Into Obshaga ([DormitoryID], [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{Id_room_temp.RoomID.ToString()}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}')";
+                string query = $"Insert Into Obshaga ([DormitoryID], [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{Id_room_temp.RoomID.ToString()}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -67,7 +95,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update Obshaga Set [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note] = N'{Id_student_temp.StudentID.ToString()}', '{room.Text}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}' Where [DormitoryID] = {obshaga.DormitoryID}";
+                string query = $"Update Obshaga Set [StudentID], [RoomNumber], [CheckInDate], [CheckOutDate], [Note] = N'{Id_student_temp.StudentID.ToString()}', '{room.Text}', '{RentStart.ToString()}', '{RentOut.ToString()}', '{primech.Text}', [Files] = '{fileContent}' Where [DormitoryID] = {obshaga.DormitoryID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -76,6 +104,7 @@ namespace UP.Pages.PagesInTable
                 }
                 else MessageBox.Show("Запрос на изменение общежития не был обработан!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
         }
 
         private void Click_Cancel_Obshaga_Redact(object sender, RoutedEventArgs e)

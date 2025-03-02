@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -39,15 +41,31 @@ namespace UP.Pages.PagesInTable
                 konVipl.Text = _social.EndDate.ToString();
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_SocialScholarships_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Students Id_student_temp;
             Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.SocialScholarships);
             if (social.DocumentReason == null)
             {
-                string query = $"Insert Into SocialScholarships ([ScholarshipID], [StudentID], [DocumentReason], [StartDate], [EndDate]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{docOsn.Text}', '{nachVipl.Text}', '{konVipl.Text}')";
+                string query = $"Insert Into SocialScholarships ([ScholarshipID], [StudentID], [DocumentReason], [StartDate], [EndDate], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{docOsn.Text}', '{nachVipl.Text}', '{konVipl.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -58,7 +76,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update SocialScholarships Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentReason] = N'{docOsn.Text}, [StartDate] = N'{nachVipl.Text}, [EndDate] = N'{konVipl.Text} Where [ScholarshipID] = {social.ScholarshipID}";
+                string query = $"Update SocialScholarships Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [DocumentReason] = N'{docOsn.Text}', [StartDate] = N'{nachVipl.Text}', [EndDate] = N'{konVipl.Text}', [Files] = '{fileContent}' Where [ScholarshipID] = {social.ScholarshipID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

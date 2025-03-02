@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ClassConnection;
+using Microsoft.Win32;
 
 namespace UP.Pages.PagesInTable
 {
@@ -43,15 +45,31 @@ namespace UP.Pages.PagesInTable
                 primech.Text = _sppp.Note;
             }
         }
-
+        private string selectedFilePath;
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*"; // Фильтр файлов
+            if (openFileDialog.ShowDialog() == true)
+            {
+                selectedFilePath = openFileDialog.FileName;
+                FilePathTextBox.Text = selectedFilePath;
+            }
+        }
         private void Click_SPPP_Meetings_Redact(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(selectedFilePath))
+            {
+                MessageBox.Show("Пожалуйста, выберите файл.");
+                return;
+            }
+            string fileContent = File.ReadAllText(selectedFilePath);
             ClassModules.Students Id_student_temp;
             Id_student_temp = ClassConnection.Connection.Students.Find(x => x.StudentID == Convert.ToInt32(((ComboBoxItem)student.SelectedItem).Tag));
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.SPPP_Meetings);
             if (sppp.OsnVizov == null)
             {
-                string query = $"Insert Into SPPP_Meetings ([MeetingID], [StudentID], [Date], [OsnVizov], [Sotrudniki], [Predstaviteli], [ReasonForCall], [Reshenie], [Note]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{RentStart.Text}', '{osnVizov.Text}', '{sotrud.Text}', '{predstav.Text}', '{prichVizov.Text}', '{resh.Text}', '{primech.Text}')";
+                string query = $"Insert Into SPPP_Meetings ([MeetingID], [StudentID], [Date], [OsnVizov], [Sotrudniki], [Predstaviteli], [ReasonForCall], [Reshenie], [Note], [Files]) Values ({id.ToString()}, '{Id_student_temp.StudentID.ToString()}', '{RentStart.Text}', '{osnVizov.Text}', '{sotrud.Text}', '{predstav.Text}', '{prichVizov.Text}', '{resh.Text}', '{primech.Text}', '{fileContent}')";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {
@@ -62,7 +80,7 @@ namespace UP.Pages.PagesInTable
             }
             else
             {
-                string query = $"Update SPPP_Meetings Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [Date] = N'{RentStart.Text}', [OsnVizov] = N'{osnVizov.Text}', [Sotrudniki] = N'{sotrud.Text}', [Predstaviteli] = N'{predstav.Text}', [ReasonForCall] = N'{prichVizov.Text}', [Reshenie] = N'{resh.Text}', [Note] = N'{primech.Text}' Where [MeetingID] = {sppp.MeetingID}";
+                string query = $"Update SPPP_Meetings Set [StudentID] = N'{Id_student_temp.StudentID.ToString()}', [Date] = N'{RentStart.Text}', [OsnVizov] = N'{osnVizov.Text}', [Sotrudniki] = N'{sotrud.Text}', [Predstaviteli] = N'{predstav.Text}', [ReasonForCall] = N'{prichVizov.Text}', [Reshenie] = N'{resh.Text}', [Note] = N'{primech.Text}', [Files] = '{fileContent}' Where [MeetingID] = {sppp.MeetingID}";
                 var query_apply = Login.Login.connection.ExecuteQuery(query);
                 if (query_apply != null)
                 {

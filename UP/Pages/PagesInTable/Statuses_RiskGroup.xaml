@@ -38,6 +38,8 @@
                         <TextBox x:Name="prichSnUch" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,657,193,0" VerticalAlignment="Top"/>
                         <Label Content="Примечание" Margin="40,697,25,0" Foreground="White" FontSize="15" FontFamily="Yu Gothic UI Semilight" HorizontalContentAlignment="Left" Height="29" VerticalAlignment="Top"/>
                         <TextBox x:Name="primech" Style="{StaticResource BaseBox}" Height="35" Background="#FFDEDEDE" Margin="40,731,193,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="FilePathTextBox" IsReadOnly="True" Margin="30,801,202,129"/>
+                        <Button Content="Выбрать файл" Click="SelectFileButton_Click" Margin="642,801,202,129"/>
 
                         <Button Style="{StaticResource BtnRedac}" Margin="0,0,136.2,24" VerticalAlignment="Bottom" Height="40" Width="105" Click="Click_Statuses_RiskGroup_Redact" HorizontalAlignment="Right">
                             <Image Source="/Images/redac.png" Width="20" Height="20"/>
