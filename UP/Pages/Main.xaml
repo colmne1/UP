@@ -118,7 +118,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <StackPanel Margin="116,102,117,553" Background="White" x:Name="filterpanel" Visibility="Hidden">
+        <StackPanel Margin="116,102,117,553" Background="White" x:Name="filterpanel">
             <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
                 <Label Content="Дата фильтрации:" Margin="5"/>
                 <DatePicker x:Name="FilterDateDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0"/>
@@ -153,7 +153,7 @@
                 <Label Content="Комната:" Margin="5"/>
                 <TextBox x:Name="FilterRoomTextBox" TextChanged="FilterTextBox_TextChanged" Width="100" Margin="0,0,5,0"/>
                 <Label Content="Год поступления:" Margin="5"/>
-                <DatePicker x:Name="FilterPostupDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0"/>
+                <DatePicker x:Name="FilterPostupDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0" SelectedDateFormat="Short" />
                 <Label Content="Год отчисления:" Margin="5"/>
                 <DatePicker x:Name="FilterOtchisDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0"/>
             </StackPanel>

@@ -267,7 +267,6 @@ namespace UP.Pages
                     opgriAnimation.Duration = TimeSpan.FromSeconds(0.2);
                     opgriAnimation.Completed += delegate
                     {
-                        LoadStudents();
                         ApplyFilter();
                     };
                     parrent.BeginAnimation(StackPanel.OpacityProperty, opgriAnimation);
@@ -540,8 +539,13 @@ namespace UP.Pages
 
                 // 2. Применяем фильтры (как в предыдущем примере)
                 DateTime filterDate = FilterDateDatePicker.SelectedDate ?? DateTime.Today;
+                DateTime datePostup = FilterPostupDatePicker.SelectedDate.Value;
+                int yearpostup = datePostup.Year;
+                DateTime dateOtchiz = FilterOtchisDatePicker.SelectedDate.Value;
+                int dateotchiz = dateOtchiz.Year;
                 string lastNameFilter = FilterLastNameTextBox.Text?.Trim();
                 string groupFilter = FilterGroupTextBox.Text?.Trim();
+                string roomFilter = FilterRoomTextBox.Text?.Trim();
                 // Добавьте остальные переменные фильтров из UI
 
                 // Пример фильтрации по фамилии и группе
@@ -557,6 +561,54 @@ namespace UP.Pages
                 if (FilterSPPPCheckBox.IsChecked == true)
                 {
                     filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.SpppMeetings.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterVzyskCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => s.Vziskanie != null);
+                }
+                if (FilterSirotsCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.StatusesSirots.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterInvalidCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.StatusesInvalids.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterOVZCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.StatusesOvzs.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterSVOCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.StatusesSvos.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterSocialCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.SocialScholarships.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterRiskCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => ClassConnection.Connection.StatusesRiskGroups.Any(sp => sp.StudentID == s.StudentID));
+                }
+                if (FilterSovershenCheckBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => DateTime.Now.Year - s.BirthDate.Year >= 18);
+                }
+                if (FilterOtchizBox.IsChecked == true)
+                {
+                    filteredStudents = filteredStudents.Where(s => s.DateOtchiz == null);
+                }
+                if (!string.IsNullOrEmpty(roomFilter))  
+                {
+                    filteredStudents = filteredStudents.Where(s => Connection.Obshagas.Any(o => o.StudentID == s.StudentID && o.RoomNumber.ToString() == roomFilter)).ToList();
+                }
+                if (FilterPostupDatePicker != null)
+                {
+                    filteredStudents = filteredStudents.Where(s => yearpostup == s.YearPostup);
+                }
+                if (FilterOtchisDatePicker != null)
+                {
+                    filteredStudents = filteredStudents.Where(s => dateotchiz == s.YearOkonch);
                 }
                 // Пол
                 string genderFilter = (FilterGenderComboBox.SelectedItem as ComboBoxItem)?.Content as string;
