@@ -63,20 +63,11 @@ namespace UP.Pages.PagesInTable
         {
             if (string.IsNullOrEmpty(selectedFilePath))
             {
-                MessageBox.Show("Пожалуйста, выберите файл.");
-                return;
+               MessageBox.Show("Пожалуйста, выберите файл.");
+               return;
             }
-            byte[] fileData;
-            try
-            {
-                fileData = File.ReadAllBytes(selectedFilePath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при чтении файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            
+            string fileContent = File.ReadAllText(selectedFilePath);
+
             int id = Login.Login.connection.SetLastId(ClassConnection.Connection.Tables.Departments);
             ClassModules.Students Id_student_temp;
             ClassModules.Rooms Id_room_temp;

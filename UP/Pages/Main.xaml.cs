@@ -539,7 +539,8 @@ namespace UP.Pages
 
                 // 2. Применяем фильтры (как в предыдущем примере)
                 DateTime filterDate = FilterDateDatePicker.SelectedDate ?? DateTime.Today;
-                DateTime datePostup = FilterPostupDatePicker.SelectedDate.Value;
+                DateTime datePostup = DateTime.Today;
+                datePostup = FilterPostupDatePicker.SelectedDate.Value;
                 int yearpostup = datePostup.Year;
                 DateTime dateOtchiz = FilterOtchisDatePicker.SelectedDate.Value;
                 int dateotchiz = dateOtchiz.Year;

@@ -90,7 +90,7 @@ namespace UP.Classes
                         Note = Convert.ToString(reader.GetValue(15)),
                         ParentsInfo = Convert.ToString(reader.GetValue(16)),
                         Vziskanie = Convert.ToString(reader.GetValue(17)),
-                        Files = Convert.ToString(reader.GetValue(18))
+                        Files = reader.IsDBNull(6) ? null : (byte[])reader.GetValue(18)
                     };
                     students.Add(student);
                 }

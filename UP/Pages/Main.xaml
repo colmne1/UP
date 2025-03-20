@@ -153,9 +153,9 @@
                 <Label Content="Комната:" Margin="5"/>
                 <TextBox x:Name="FilterRoomTextBox" TextChanged="FilterTextBox_TextChanged" Width="100" Margin="0,0,5,0"/>
                 <Label Content="Год поступления:" Margin="5"/>
-                <DatePicker x:Name="FilterPostupDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0" SelectedDateFormat="Short" />
+                <DatePicker x:Name="FilterPostupDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0" SelectedDateFormat="Short" SelectedDate="01.02.2005" />
                 <Label Content="Год отчисления:" Margin="5"/>
-                <DatePicker x:Name="FilterOtchisDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0"/>
+                <DatePicker x:Name="FilterOtchisDatePicker" SelectedDateChanged="Filter_SelectionChanged" Margin="0,0,5,0" SelectedDate="01.02.2005"/>
             </StackPanel>
         </StackPanel>
         <Border Margin="10,247,10,10" CornerRadius="15,15,15,15">
